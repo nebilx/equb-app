@@ -1,5 +1,5 @@
 
-dotenv/.env
+
 # Miscellaneous
 *.class
 *.log
@@ -44,3 +44,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/dotenv/.env
