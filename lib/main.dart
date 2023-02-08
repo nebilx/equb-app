@@ -1,7 +1,12 @@
 import 'package:equb_app/Authentication/Screens/signin.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+import 'Authentication/Screens/signup.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: 'dotenv/.env');
   runApp(const MyApp());
 }
 
@@ -18,6 +23,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: SignIn());
+        home: SignUp());
   }
 }

@@ -1,4 +1,5 @@
 import 'package:equb_app/Authentication/Screens/signup.dart';
+import 'package:equb_app/Authentication/Services/auth.services.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -87,7 +88,15 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (_userController.text == '' ||
+                      _passwordController.text == '') {
+                    return;
+                  }
+                  Auth mAuth = Auth();
+                  print(_userController.text + ' ' + _passwordController.text);
+                  mAuth.login(_userController.text, _passwordController.text);
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 40),
                   backgroundColor: Colors.black,
@@ -95,7 +104,7 @@ class _SignInState extends State<SignIn> {
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Sign In',
                   style: TextStyle(
                     color: Colors.white,
