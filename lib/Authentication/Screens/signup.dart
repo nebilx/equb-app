@@ -1,10 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
-import 'package:equb_app/component/button.dart';
-import 'package:equb_app/component/passwordtextfield.dart';
-import 'package:equb_app/component/textfield.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:equb_app/Authentication/Screens/signin.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -17,159 +14,154 @@ class _SignUpState extends State<SignUp> {
   final _signUpFormKey = GlobalKey<FormState>();
 
   final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    bool _obscureText = true;
     return Scaffold(
       body: Container(
-        // padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
-        width: MediaQuery.of(context).size.height,
-        height: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
         decoration: BoxDecoration(
           color: Color.fromRGBO(237, 237, 237, 4),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              width: MediaQuery.of(context).size.width / 1.1,
-              height: MediaQuery.of(context).size.height / 1.35,
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(84, 84, 84, 4),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, top: 20, bottom: 10),
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Sign Up',
-                        style: GoogleFonts.inter(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () {},
+                child: DottedBorder(
+                  borderType: BorderType.RRect,
+                  radius: const Radius.circular(10),
+                  dashPattern: [10, 4],
+                  strokeCap: StrokeCap.round,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.2,
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.image,
+                          size: 40,
+                        )
+                      ],
                     ),
                   ),
-                  Divider(
-                    color: Colors.white,
-                    thickness: 5,
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              TextField(
+                controller: _nameController,
+                decoration: InputDecoration(
+                  hintText: 'Full Name',
+                  labelText: 'Full Name',
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 5),
+                    borderRadius: BorderRadius.circular(5),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Form(
-                        key: _signUpFormKey,
-                        child: Column(
-                          children: [
-                            Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20, right: 20, top: 20),
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    FilePickerResult? _res =
-                                        await FilePicker.platform.pickFiles(
-                                            allowMultiple: false,
-                                            type: FileType.custom,
-                                            allowedExtensions: ['jpg', 'png']);
-                                    if (_res != null) {
-                                      setState(() {});
-                                    }
-                                  },
-                                  child: DottedBorder(
-                                      borderType: BorderType.RRect,
-                                      color: Colors.white,
-                                      radius: const Radius.circular(40),
-                                      dashPattern: [10, 4],
-                                      strokeCap: StrokeCap.round,
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width /
-                                                4,
-                                        height:
-                                            MediaQuery.of(context).size.height /
-                                                9,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.image,
-                                              size: 40,
-                                              color: Colors.white,
-                                            )
-                                          ],
-                                        ),
-                                      )),
-                                )),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20, top: 20),
-                              child: CTextField(
-                                controller: _nameController,
-                                text: 'Name',
-                                icon: Icons.person,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20),
-                              child: CTextField(
-                                controller: _emailController,
-                                text: 'Email',
-                                icon: Icons.email,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20),
-                              child: CTextField(
-                                controller: _userController,
-                                text: 'Username',
-                                icon: Icons.person_outlined,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 20),
-                              child: CPTextField(
-                                controller: _passwordController,
-                                text: 'Password',
-                              ),
-                            ),
-                            CButton(
-                              text: 'Sign Up',
-                              onTap: () {},
-                              color: Color.fromRGBO(125, 255, 115, 4),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              IntlPhoneField(
+                decoration: const InputDecoration(
+                  labelText: 'Phone Number',
+                  focusColor: Colors.amberAccent,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    borderSide: BorderSide(color: Colors.black, width: 5),
+                  ),
+                ),
+                initialCountryCode: 'ET',
+                onChanged: (phone) {
+                  // print(phone.completeNumber);
+                  // widget._phoneNumber = phone.completeNumber;
+                },
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              TextField(
+                controller: _userController,
+                decoration: InputDecoration(
+                  hintText: 'Username',
+                  labelText: 'Username',
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 5),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  labelText: 'Password',
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                    child: Icon(
+                      _obscureText ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.black,
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 5),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 40),
+                  backgroundColor: Colors.black,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                  ),
+                ),
+                child: Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const Text(
+                    'Already have account? ',
+                    style: TextStyle(
+                      color: Color(0xFF103265),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => SignIn()));
+                    },
+                    child: const Text(
+                      'Sign in',
+                      style: TextStyle(fontSize: 15, color: Color(0xFF536DF8)),
+                    ),
                   ),
                 ],
-              ),
-            ),
-            Image.asset(
-              'assets/images/dan_energy_black.png',
-              height: MediaQuery.of(context).size.height / 4,
-              width: MediaQuery.of(context).size.width / 2.9,
-              fit: BoxFit.contain,
-            ),
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

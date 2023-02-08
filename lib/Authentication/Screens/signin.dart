@@ -1,8 +1,5 @@
-import 'package:equb_app/component/button.dart';
-import 'package:equb_app/component/passwordtextfield.dart';
-import 'package:equb_app/component/textfield.dart';
+import 'package:equb_app/Authentication/Screens/signup.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -27,117 +24,111 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    bool _obscureText = true;
     return Scaffold(
       body: Container(
-        // padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
-        width: MediaQuery.of(context).size.height,
-        height: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
         decoration: BoxDecoration(
           color: Color.fromRGBO(237, 237, 237, 4),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/dan_equb.png',
-              height: MediaQuery.of(context).size.height / 3.5,
-              width: MediaQuery.of(context).size.width / 1.5,
-              fit: BoxFit.contain,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width / 1.1,
-              height: MediaQuery.of(context).size.height / 2.5,
-              // decoration: BoxDecoration(
-              //     color: Color.fromRGBO(84, 84, 84, 4),
-              //     boxShadow: [
-              //       BoxShadow(
-              //           color: Colors.black.withOpacity(.15),
-              //           blurRadius: 30,
-              //           offset: Offset(0, 10))
-              //     ],
-              //     borderRadius: BorderRadius.circular(20)),
-              decoration: BoxDecoration(
-                  color: Color.fromRGBO(84, 84, 84, 4),
-                  borderRadius: BorderRadius.circular(20)),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/equb_logo.png',
+                height: MediaQuery.of(context).size.height / 4,
+                width: MediaQuery.of(context).size.width / 1.9,
+                fit: BoxFit.contain,
+              ),
+              const Text(
+                'Login in to your account',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Color.fromARGB(255, 12, 12, 12),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              TextField(
+                controller: _userController,
+                decoration: InputDecoration(
+                  hintText: 'Username',
+                  labelText: 'Username',
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 5),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  labelText: 'Password',
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                    child: Icon(
+                      _obscureText ? Icons.visibility : Icons.visibility_off,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 2.0),
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(double.infinity, 40),
+                  backgroundColor: Colors.black,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                  ),
+                ),
+                child: Text(
+                  'Sign In',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  // Padding(
-                  //   padding:
-                  //       const EdgeInsets.only(left: 30, top: 15, bottom: 10),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, top: 20, bottom: 10),
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'Sign In',
-                        style: GoogleFonts.inter(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.bold,
-                        ),
+                  const Text(
+                    "Don't Have Account? ",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 0),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => SignUp()));
+                    },
+                    child: const Text(
+                      'Sign up',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Color(0xFF536DF8),
                       ),
                     ),
                   ),
-
-                  Divider(
-                    color: Colors.white,
-                    thickness: 5,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Form(
-                        key: _signInFormKey,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 20, right: 20, bottom: 20, top: 20),
-                              child: CTextField(
-                                controller: _userController,
-                                text: 'Username',
-                                icon: Icons.person,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 20),
-                              child: CPTextField(
-                                  controller: _passwordController,
-                                  text: 'Password'),
-                            ),
-                            CButton(
-                              text: 'Sign In',
-                              onTap: () {},
-                              color: Color.fromRGBO(41, 255, 178, 5),
-                            )
-                          ],
-                        ),
-                      ),
-
-                      // TextButton(
-                      //   onPressed: () {},
-                      //   child: Text(
-                      //     'Forgot password',
-                      //     style: TextStyle(
-                      //         color: Colors.greenAccent, fontSize: 12),
-                      //   ),
-                      // ),
-                    ],
-                  )
                 ],
-              ),
-            ),
-            Image.asset(
-              'assets/images/dan_energy_black.png',
-              height: MediaQuery.of(context).size.height / 4,
-              width: MediaQuery.of(context).size.width / 2.9,
-              fit: BoxFit.contain,
-            ),
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
