@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:equb_app/Authentication/Screens/signin.dart';
 import 'package:flutter/material.dart';
@@ -11,16 +13,17 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final _signUpFormKey = GlobalKey<FormState>();
-
+  bool isChecked = false;
+  bool _obscureText = true;
+  bool disabled = true;
+  // final ImagePicker _picker = ImagePicker();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
+  File? _imageFile;
   @override
   Widget build(BuildContext context) {
-    bool _obscureText = true;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
@@ -32,29 +35,57 @@ class _SignUpState extends State<SignUp> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () {},
-                child: DottedBorder(
-                  borderType: BorderType.RRect,
-                  radius: const Radius.circular(10),
-                  dashPattern: [10, 4],
-                  strokeCap: StrokeCap.round,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.2,
-                    height: MediaQuery.of(context).size.height * 0.1,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.image,
-                          size: 40,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                onTap: () async {
+                  // Pick an image
+                  // final XFile? _image =
+                  //     await _picker.pickImage(source: ImageSource.gallery);
+
+                  // if (_image != null) {
+                  //   setState(() {
+                  //     _imageFile = File(_image.path);
+                  //     disabled = false;
+                  //   });
+                  // }
+                },
+                child: _imageFile == null
+                    ? DottedBorder(
+                        borderType: BorderType.RRect,
+                        radius: const Radius.circular(10),
+                        dashPattern: [10, 4],
+                        strokeCap: StrokeCap.round,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.image,
+                                size: 40,
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                'Profile Image',
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    : Image.file(
+                        _imageFile!,
+                        fit: BoxFit.contain,
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        height: MediaQuery.of(context).size.height * 0.1,
+                      ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               TextField(
@@ -101,6 +132,7 @@ class _SignUpState extends State<SignUp> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               TextField(
                 controller: _passwordController,
+                obscureText: _obscureText,
                 decoration: InputDecoration(
                   hintText: 'Password',
                   labelText: 'Password',

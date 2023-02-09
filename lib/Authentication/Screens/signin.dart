@@ -10,8 +10,7 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final _signInFormKey = GlobalKey<FormState>();
-
+  bool _obscureText = true;
   final TextEditingController _userController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
@@ -25,7 +24,6 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    bool _obscureText = true;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
@@ -65,6 +63,7 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               TextField(
+                obscureText: _obscureText,
                 controller: _passwordController,
                 decoration: InputDecoration(
                   hintText: 'Password',
