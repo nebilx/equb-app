@@ -1,6 +1,9 @@
 import 'package:equb_app/Authentication/Screens/signup.dart';
 import 'package:equb_app/Authentication/Services/auth.services.dart';
+import 'package:equb_app/Reusables/dialogs.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_progress/loading_progress.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -15,7 +18,7 @@ class _SignInState extends State<SignIn> {
   final TextEditingController _userController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
-
+  bool _obscureText = true;
   @override
   void dispose() {
     super.dispose();
@@ -25,7 +28,6 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    bool _obscureText = true;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
@@ -65,6 +67,7 @@ class _SignInState extends State<SignIn> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               TextField(
+                obscureText: _obscureText,
                 controller: _passwordController,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -91,11 +94,14 @@ class _SignInState extends State<SignIn> {
                 onPressed: () {
                   if (_userController.text == '' ||
                       _passwordController.text == '') {
+                    DecoratedDialogs.showError(
+                        'please submit your credentials', context, 'okay');
                     return;
                   }
                   Auth mAuth = Auth();
-                  print(_userController.text + ' ' + _passwordController.text);
-                  mAuth.login(_userController.text, _passwordController.text);
+
+                  mAuth.login(
+                      _userController.text, _passwordController.text, context);
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 40),

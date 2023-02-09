@@ -1,5 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
+import 'package:equb_app/Authentication/Models/usermodel.dart';
 import 'package:equb_app/Authentication/Screens/signin.dart';
+import 'package:equb_app/Authentication/Services/auth.services.dart';
+import 'package:equb_app/Reusables/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
@@ -11,20 +14,17 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final _signUpFormKey = GlobalKey<FormState>();
-
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-
+  bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
-    bool _obscureText = true;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromRGBO(237, 237, 237, 4),
         ),
         child: SingleChildScrollView(
@@ -36,7 +36,7 @@ class _SignUpState extends State<SignUp> {
                 child: DottedBorder(
                   borderType: BorderType.RRect,
                   radius: const Radius.circular(10),
-                  dashPattern: [10, 4],
+                  dashPattern: const [10, 4],
                   strokeCap: StrokeCap.round,
                   child: Container(
                     width: MediaQuery.of(context).size.width * 0.2,
@@ -46,7 +46,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: const [
                         Icon(
                           Icons.image,
                           size: 40,
@@ -62,9 +62,9 @@ class _SignUpState extends State<SignUp> {
                 decoration: InputDecoration(
                   hintText: 'Full Name',
                   labelText: 'Full Name',
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: const Icon(Icons.person),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5),
+                    borderSide: const BorderSide(color: Colors.black, width: 5),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
@@ -81,8 +81,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 initialCountryCode: 'ET',
                 onChanged: (phone) {
-                  // print(phone.completeNumber);
-                  // widget._phoneNumber = phone.completeNumber;
+                  _phoneController.text = phone.completeNumber;
                 },
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
@@ -91,15 +90,16 @@ class _SignUpState extends State<SignUp> {
                 decoration: InputDecoration(
                   hintText: 'Username',
                   labelText: 'Username',
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: const Icon(Icons.person),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5),
+                    borderSide: const BorderSide(color: Colors.black, width: 5),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               TextField(
+                obscureText: _obscureText,
                 controller: _passwordController,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -116,14 +116,31 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5),
+                    borderSide: const BorderSide(color: Colors.black, width: 5),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (_nameController.text == '' ||
+                      _phoneController.text == '' ||
+                      _userController.text == '' ||
+                      _passwordController.text == '') {
+                    DecoratedDialogs.showError(
+                        'please submit all information', context, 'okay');
+                    return;
+                  } else {
+                    User user = User(
+                        username: _userController.text,
+                        phonenumber: _phoneController.text,
+                        fullname: _nameController.text,
+                        password: _passwordController.text);
+                    Auth mAuth = Auth();
+                    mAuth.signup(user, context);
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 40),
                   backgroundColor: Colors.black,
@@ -131,7 +148,7 @@ class _SignUpState extends State<SignUp> {
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Sign Up',
                   style: TextStyle(
                     color: Colors.white,
