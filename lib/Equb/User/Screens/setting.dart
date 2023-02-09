@@ -1,4 +1,4 @@
-import 'package:equb_app/Home/screen/edit_profile.dart';
+import 'package:equb_app/Authentication/Screens/edit_profile.dart';
 import 'package:flutter/material.dart';
 
 class Setting extends StatelessWidget {

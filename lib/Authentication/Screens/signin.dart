@@ -1,7 +1,10 @@
 import 'package:equb_app/Authentication/Screens/signup.dart';
 import 'package:equb_app/Authentication/Services/auth.services.dart';
 import 'package:equb_app/Reusables/dialogs.dart';
+import 'package:equb_app/Reusables/dialogs.dart';
 import 'package:flutter/material.dart';
+import 'package:loading_progress/loading_progress.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 import 'package:loading_progress/loading_progress.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
 
@@ -13,10 +16,10 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  bool _obscureText = true;
   final TextEditingController _userController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
+  bool _obscureText = true;
   @override
   void dispose() {
     super.dispose();
@@ -66,6 +69,7 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               TextField(
                 obscureText: _obscureText,
+                obscureText: _obscureText,
                 controller: _passwordController,
                 decoration: InputDecoration(
                   hintText: 'Password',
@@ -94,9 +98,14 @@ class _SignInState extends State<SignIn> {
                       _passwordController.text == '') {
                     DecoratedDialogs.showError(
                         'please submit your credentials', context, 'okay');
+                    DecoratedDialogs.showError(
+                        'please submit your credentials', context, 'okay');
                     return;
                   }
                   Auth mAuth = Auth();
+
+                  mAuth.login(
+                      _userController.text, _passwordController.text, context);
 
                   mAuth.login(
                       _userController.text, _passwordController.text, context);

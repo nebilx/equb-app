@@ -1,5 +1,5 @@
-import 'package:equb_app/Home/screen/home.dart';
-import 'package:equb_app/Home/screen/setting.dart';
+import 'package:equb_app/Equb/User/Screens/Home.dart';
+import 'package:equb_app/Equb/User/Screens/setting.dart';
 import 'package:flutter/material.dart';
 
 class BHome extends StatefulWidget {
