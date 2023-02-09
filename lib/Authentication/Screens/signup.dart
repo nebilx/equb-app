@@ -1,7 +1,10 @@
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:equb_app/Authentication/Models/usermodel.dart';
 import 'package:equb_app/Authentication/Screens/signin.dart';
+import 'package:equb_app/Authentication/Services/auth.services.dart';
+import 'package:equb_app/Reusables/dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
@@ -17,6 +20,8 @@ class _SignUpState extends State<SignUp> {
   bool _obscureText = true;
   bool disabled = true;
   // final ImagePicker _picker = ImagePicker();
+  final _signUpFormKey = GlobalKey<FormState>();
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _userController = TextEditingController();
@@ -27,7 +32,7 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Color.fromRGBO(237, 237, 237, 4),
         ),
         child: SingleChildScrollView(
@@ -35,7 +40,7 @@ class _SignUpState extends State<SignUp> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GestureDetector(
-                onTap: () async {
+                onTap: () {
                   // Pick an image
                   // final XFile? _image =
                   //     await _picker.pickImage(source: ImageSource.gallery);
@@ -65,16 +70,6 @@ class _SignUpState extends State<SignUp> {
                               Icon(
                                 Icons.image,
                                 size: 40,
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'Profile Image',
-                                style: TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.black,
-                                ),
                               )
                             ],
                           ),
@@ -93,9 +88,9 @@ class _SignUpState extends State<SignUp> {
                 decoration: InputDecoration(
                   hintText: 'Full Name',
                   labelText: 'Full Name',
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: const Icon(Icons.person),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5),
+                    borderSide: const BorderSide(color: Colors.black, width: 5),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
@@ -112,8 +107,7 @@ class _SignUpState extends State<SignUp> {
                 ),
                 initialCountryCode: 'ET',
                 onChanged: (phone) {
-                  // print(phone.completeNumber);
-                  // widget._phoneNumber = phone.completeNumber;
+                  _phoneController.text = phone.completeNumber;
                 },
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
@@ -122,9 +116,9 @@ class _SignUpState extends State<SignUp> {
                 decoration: InputDecoration(
                   hintText: 'Username',
                   labelText: 'Username',
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: const Icon(Icons.person),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5),
+                    borderSide: const BorderSide(color: Colors.black, width: 5),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
@@ -148,14 +142,31 @@ class _SignUpState extends State<SignUp> {
                     ),
                   ),
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 5),
+                    borderSide: const BorderSide(color: Colors.black, width: 5),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if (_nameController.text == '' ||
+                      _phoneController.text == '' ||
+                      _userController.text == '' ||
+                      _passwordController.text == '') {
+                    DecoratedDialogs.showError(
+                        'please submit all information', context, 'okay');
+                    return;
+                  } else {
+                    User user = User(
+                        username: _userController.text,
+                        phonenumber: _phoneController.text,
+                        fullname: _nameController.text,
+                        password: _passwordController.text);
+                    Auth mAuth = Auth();
+                    mAuth.signup(user, context);
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 40),
                   backgroundColor: Colors.black,
@@ -163,7 +174,7 @@ class _SignUpState extends State<SignUp> {
                     borderRadius: BorderRadius.all(Radius.circular(5)),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Sign Up',
                   style: TextStyle(
                     color: Colors.white,
