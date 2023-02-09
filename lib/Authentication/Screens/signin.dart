@@ -69,7 +69,6 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               TextField(
                 obscureText: _obscureText,
-                obscureText: _obscureText,
                 controller: _passwordController,
                 decoration: InputDecoration(
                   hintText: 'Password',
