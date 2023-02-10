@@ -26,7 +26,10 @@ class UserEqubServices with ChangeNotifier {
                 title: e['title'],
                 description: e['description'],
                 amount: e['amount'].toString(),
-                memberSize: e['memberSize'].toString()))
+                memberSize: e['memberSize'].toString(),
+                members: e['members']
+                ) )
+                
           });
       equbs.forEach((element) {
         print(element.title);

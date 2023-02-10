@@ -144,104 +144,110 @@ class _ADetailState extends State<ADetail> {
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 30),
-                        child: Text(
-                          'Members',
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.58,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 1),
-                          color: Color.fromARGB(255, 189, 189, 189),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: DataTable(
-                            dividerThickness: 3,
-                            dataTextStyle: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            columns: [
-                              DataColumn(
-                                label: Text('ID'),
-                              ),
-                              DataColumn(
-                                label: Text('Name'),
-                              ),
-                              DataColumn(
-                                label: Text('won'),
-                              ),
-                              DataColumn(
-                                label: Text('Action'),
-                              ),
-                            ],
-                            rows: [
-                              DataRow(cells: [
-                                DataCell(Text("1")),
-                                DataCell(Text("Alex")),
-                                DataCell(Text("1")),
-                                DataCell(TextButton(
-                                  onPressed: () {},
-                                  child: const Text(
-                                    'remove',
-                                    style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                )),
-                              ]),
-                              DataRow(cells: [
-                                DataCell(Text("2")),
-                                DataCell(Text("John")),
-                                DataCell(Text("2")),
-                                DataCell(TextButton(
-                                  onPressed: () {},
-                                  child: const Text(
-                                    'remove',
-                                    style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                )),
-                              ]),
-                              DataRow(cells: [
-                                DataCell(Text("2")),
-                                DataCell(Text("John")),
-                                DataCell(Text("2")),
-                                DataCell(TextButton(
-                                  onPressed: () {},
-                                  child: const Text(
-                                    'remove',
-                                    style: TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                      color: Colors.red,
-                                    ),
-                                  ),
-                                )),
-                              ]),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
+                  widget.equbModeL.members == null ||
+                          widget.equbModeL.members!.isEmpty
+                      ? Center(
+                          child: Text('No members'),
+                        )
+                      : Text('data...')
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     Padding(
+                  //       padding: const EdgeInsets.only(left: 30),
+                  //       child: Text(
+                  //         'Members',
+                  //         style: TextStyle(
+                  //           fontSize: 15,
+                  //           fontWeight: FontWeight.bold,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //     Container(
+                  //       padding:
+                  //           EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  //       width: MediaQuery.of(context).size.width,
+                  //       height: MediaQuery.of(context).size.height * 0.58,
+                  //       decoration: BoxDecoration(
+                  //         border: Border.all(color: Colors.white, width: 1),
+                  //         color: Color.fromARGB(255, 189, 189, 189),
+                  //         borderRadius: BorderRadius.circular(10),
+                  //       ),
+                  //       child: SingleChildScrollView(
+                  //         scrollDirection: Axis.vertical,
+                  //         child: DataTable (
+                  //           dividerThickness: 3,
+                  //           dataTextStyle: TextStyle(
+                  //             color: Colors.black54,
+                  //             fontSize: 14,
+                  //             fontWeight: FontWeight.bold,
+                  //           ),
+                  //           columns:const [
+                  //             DataColumn(
+                  //               label: Text('ID'),
+                  //             ),
+                  //             DataColumn(
+                  //               label: Text('Name'),
+                  //             ),
+                  //             DataColumn(
+                  //               label: Text('won'),
+                  //             ),
+                  //             DataColumn(
+                  //               label: Text('Action'),
+                  //             ),
+                  //           ],
+                  //           rows: [
+                  //             DataRow(cells: [
+                  //               DataCell(Text("1")),
+                  //               DataCell(Text("Alex")),
+                  //               DataCell(Text("1")),
+                  //               DataCell(TextButton(
+                  //                 onPressed: () {},
+                  //                 child: const Text(
+                  //                   'remove',
+                  //                   style: TextStyle(
+                  //                     fontStyle: FontStyle.italic,
+                  //                     color: Colors.red,
+                  //                   ),
+                  //                 ),
+                  //               )),
+                  //             ]),
+                  //             DataRow(cells: [
+                  //               DataCell(Text("2")),
+                  //               DataCell(Text("John")),
+                  //               DataCell(Text("2")),
+                  //               DataCell(TextButton(
+                  //                 onPressed: () {},
+                  //                 child: const Text(
+                  //                   'remove',
+                  //                   style: TextStyle(
+                  //                     fontStyle: FontStyle.italic,
+                  //                     color: Colors.red,
+                  //                   ),
+                  //                 ),
+                  //               )),
+                  //             ]),
+                  //             DataRow(cells: [
+                  //               DataCell(Text("2")),
+                  //               DataCell(Text("John")),
+                  //               DataCell(Text("2")),
+                  //               DataCell(TextButton(
+                  //                 onPressed: () {},
+                  //                 child: const Text(
+                  //                   'remove',
+                  //                   style: TextStyle(
+                  //                     fontStyle: FontStyle.italic,
+                  //                     color: Colors.red,
+                  //                   ),
+                  //                 ),
+                  //               )),
+                  //             ]),
+                  //           ],
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ],
+                  // )
                 ],
               ),
             )),
