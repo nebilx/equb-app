@@ -1,7 +1,6 @@
-
 import 'package:equb_app/Authentication/Screens/signin.dart';
-import 'package:equb_app/Equb/User/Screens/Home.dart';
 import 'package:equb_app/Equb/User/Services/equb.services.dart';
+import 'package:equb_app/splash.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -31,6 +30,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const SignIn());
+        home: const Splash());
   }
 }

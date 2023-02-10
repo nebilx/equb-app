@@ -27,8 +27,8 @@ class _SplashState extends State<Splash> {
       child: Center(
         child: Image.asset(
           'assets/images/equb_logo.png',
-          width: 200,
-          height: 200,
+          width: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.of(context).size.height,
           fit: BoxFit.contain,
         ),
       ),

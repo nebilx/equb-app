@@ -1,4 +1,5 @@
 import 'package:equb_app/Authentication/Screens/edit_profile.dart';
+import 'package:equb_app/Authentication/Screens/signin.dart';
 import 'package:flutter/material.dart';
 
 class Setting extends StatelessWidget {
@@ -63,16 +64,17 @@ class Setting extends StatelessWidget {
                   )
                 ],
               ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               Text(
                 'James Paul',
                 style:
-                    const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               Text(
-                '0922334422',
+                'ID:- 0912234523',
                 style: const TextStyle(fontSize: 13),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,
                 child: ElevatedButton(
@@ -95,13 +97,9 @@ class Setting extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              const Divider(thickness: 4),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-              const Divider(),
-              const SizedBox(height: 10),
-              ProfileMenuWidget(
-                  title: 'Collaterals',
-                  icon: Icons.file_present,
-                  onPress: () {}),
               ProfileMenuWidget(
                 title: 'Contact Us',
                 icon: Icons.contacts,
@@ -112,10 +110,9 @@ class Setting extends StatelessWidget {
                 icon: Icons.policy,
                 onPress: () {},
               ),
-              const Divider(color: Colors.grey),
-              const SizedBox(
-                height: 10,
-              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+              const Divider(thickness: 4),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               ProfileMenuWidget(
                 title: 'About',
                 icon: Icons.info,
@@ -126,7 +123,10 @@ class Setting extends StatelessWidget {
                 icon: Icons.logout_outlined,
                 textColor: Colors.red,
                 endIcon: false,
-                onPress: () {},
+                onPress: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const SignIn()));
+                },
               ),
             ],
           ),

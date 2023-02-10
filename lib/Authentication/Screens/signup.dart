@@ -33,59 +33,38 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(237, 237, 237, 4),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.black,
+        title: const Center(
+          child: Text(
+            'Sign Up',
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
-        child: SingleChildScrollView(
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          padding: const EdgeInsets.fromLTRB(30, 60, 30, 25),
+          decoration: const BoxDecoration(
+            color: Color.fromRGBO(237, 237, 237, 4),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GestureDetector(
-                onTap: () {
-                  // Pick an image
-                  // final XFile? _image =
-                  //     await _picker.pickImage(source: ImageSource.gallery);
-
-                  // if (_image != null) {
-                  //   setState(() {
-                  //     _imageFile = File(_image.path);
-                  //     disabled = false;
-                  //   });
-                  // }
-                },
-                child: _imageFile == null
-                    ? DottedBorder(
-                        borderType: BorderType.RRect,
-                        radius: const Radius.circular(10),
-                        dashPattern: [10, 4],
-                        strokeCap: StrokeCap.round,
-                        child: Container(
-                          width: MediaQuery.of(context).size.width * 0.2,
-                          height: MediaQuery.of(context).size.height * 0.1,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.image,
-                                size: 40,
-                              )
-                            ],
-                          ),
-                        ),
-                      )
-                    : Image.file(
-                        _imageFile!,
-                        fit: BoxFit.contain,
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        height: MediaQuery.of(context).size.height * 0.1,
-                      ),
+              const Text(
+                'Create Account',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               TextField(
                 controller: _nameController,
                 decoration: InputDecoration(
@@ -120,7 +99,7 @@ class _SignUpState extends State<SignUp> {
                 decoration: InputDecoration(
                   hintText: 'Username',
                   labelText: 'Username',
-                  prefixIcon: const Icon(Icons.person),
+                  prefixIcon: const Icon(Icons.person_outline),
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.black, width: 5),
                     borderRadius: BorderRadius.circular(5),
@@ -172,7 +151,7 @@ class _SignUpState extends State<SignUp> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 40),
+                  minimumSize: const Size(double.infinity, 50),
                   backgroundColor: Colors.black,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),

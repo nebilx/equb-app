@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
-class UserEqubModeL {
+class EqubModeL {
   String title;
   String description;
   String amount;
@@ -10,7 +10,7 @@ class UserEqubModeL {
   List<dynamic>? members;
   List<dynamic>? roundMembers;
   String? winner;
-  UserEqubModeL({
+  EqubModeL({
     required this.title,
     required this.description,
     required this.amount,
@@ -19,9 +19,8 @@ class UserEqubModeL {
     this.roundMembers,
     this.winner,
   });
-  
 
-  UserEqubModeL copyWith({
+  EqubModeL copyWith({
     String? title,
     String? description,
     String? amount,
@@ -30,7 +29,7 @@ class UserEqubModeL {
     List<dynamic>? roundMembers,
     String? winner,
   }) {
-    return UserEqubModeL(
+    return EqubModeL(
       title: title ?? this.title,
       description: description ?? this.description,
       amount: amount ?? this.amount,
@@ -41,28 +40,28 @@ class UserEqubModeL {
     );
   }
 
-  Map<String, dynamic> toMap() {
+  Map<String, dynamic> toMap(EqubModeL equbModeL) {
     final result = <String, dynamic>{};
-  
-    result.addAll({'title': title});
-    result.addAll({'description': description});
-    result.addAll({'amount': amount});
-    result.addAll({'memberSize': memberSize});
-    if(members != null){
-      result.addAll({'members': members});
+
+    result.addAll({'title': equbModeL.title});
+    result.addAll({'description': equbModeL.description});
+    result.addAll({'amount': equbModeL.amount});
+    result.addAll({'memberSize': equbModeL.memberSize});
+    if (members != null) {
+      result.addAll({'members':equbModeL. members});
     }
-    if(roundMembers != null){
-      result.addAll({'roundMembers': roundMembers});
+    if (roundMembers != null) {
+      result.addAll({'roundMembers':equbModeL. roundMembers});
     }
-    if(winner != null){
-      result.addAll({'winner': winner});
+    if (winner != null) {
+      result.addAll({'winner': equbModeL.winner});
     }
-  
+
     return result;
   }
 
-  factory UserEqubModeL.fromMap(Map<String, dynamic> map) {
-    return UserEqubModeL(
+  factory EqubModeL.fromMap(Map<String, dynamic> map) {
+    return EqubModeL(
       title: map['title'] ?? '',
       description: map['description'] ?? '',
       amount: map['amount'] ?? '',
@@ -73,9 +72,10 @@ class UserEqubModeL {
     );
   }
 
-  String toJson() => json.encode(toMap());
+  //String toJson() => json.encode(toMap(EqubModeL equbModel));
 
-  factory UserEqubModeL.fromJson(String source) => UserEqubModeL.fromMap(json.decode(source));
+  factory EqubModeL.fromJson(String source) =>
+      EqubModeL.fromMap(json.decode(source));
 
   @override
   String toString() {
@@ -86,25 +86,25 @@ class UserEqubModeL {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     final listEquals = const DeepCollectionEquality().equals;
-  
-    return other is UserEqubModeL &&
-      other.title == title &&
-      other.description == description &&
-      other.amount == amount &&
-      other.memberSize == memberSize &&
-      listEquals(other.members, members) &&
-      listEquals(other.roundMembers, roundMembers) &&
-      other.winner == winner;
+
+    return other is EqubModeL &&
+        other.title == title &&
+        other.description == description &&
+        other.amount == amount &&
+        other.memberSize == memberSize &&
+        listEquals(other.members, members) &&
+        listEquals(other.roundMembers, roundMembers) &&
+        other.winner == winner;
   }
 
   @override
   int get hashCode {
     return title.hashCode ^
-      description.hashCode ^
-      amount.hashCode ^
-      memberSize.hashCode ^
-      members.hashCode ^
-      roundMembers.hashCode ^
-      winner.hashCode;
+        description.hashCode ^
+        amount.hashCode ^
+        memberSize.hashCode ^
+        members.hashCode ^
+        roundMembers.hashCode ^
+        winner.hashCode;
   }
 }

@@ -30,20 +30,21 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.fromLTRB(30, 130, 30, 25),
-        decoration: BoxDecoration(
-          color: Color.fromRGBO(237, 237, 237, 4),
-        ),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(237, 237, 237, 4),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
                 'assets/images/equb_logo.png',
-                height: MediaQuery.of(context).size.height / 4,
-                width: MediaQuery.of(context).size.width / 1.9,
+                height: MediaQuery.of(context).size.height * 0.3,
+                width: MediaQuery.of(context).size.width,
                 fit: BoxFit.contain,
               ),
               const Text(
@@ -59,7 +60,7 @@ class _SignInState extends State<SignIn> {
                 decoration: InputDecoration(
                   hintText: 'Username',
                   labelText: 'Username',
-                  prefixIcon: Icon(Icons.person),
+                  prefixIcon: Icon(Icons.person_outline),
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black, width: 5),
                     borderRadius: BorderRadius.circular(5),
@@ -97,20 +98,15 @@ class _SignInState extends State<SignIn> {
                       _passwordController.text == '') {
                     DecoratedDialogs.showError(
                         'please submit your credentials', context, 'okay');
-                    DecoratedDialogs.showError(
-                        'please submit your credentials', context, 'okay');
                     return;
                   }
                   Auth mAuth = Auth();
 
                   mAuth.login(
                       _userController.text, _passwordController.text, context);
-
-                  mAuth.login(
-                      _userController.text, _passwordController.text, context);
                 },
                 style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 40),
+                  minimumSize: const Size(double.infinity, 50),
                   backgroundColor: Colors.black,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(5)),

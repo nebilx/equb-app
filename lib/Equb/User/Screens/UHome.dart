@@ -1,17 +1,17 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:equb_app/Equb/User/Screens/Bhome.dart';
+import 'package:equb_app/Equb/User/Screens/UDetail.dart';
 import 'package:equb_app/Equb/User/Services/equb.services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class UHome extends StatefulWidget {
+  const UHome({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<UHome> createState() => _UHomeState();
 }
 
-class _HomeState extends State<Home> {
+class _UHomeState extends State<UHome> {
   @override
   void initState() {
     Provider.of<UserEqubServices>(context, listen: false).getEqubs();
@@ -41,14 +41,14 @@ class _HomeState extends State<Home> {
           ),
         ),
         body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 5),
           height: MediaQuery.of(context).size.height,
           child: prov.isLoading
-              ? Center(
+              ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : prov.equbs.length.isEven
-                  ? Center(
+              : prov.equbs.isEmpty
+                  ? const Center(
                       child: Text('no Equbs'),
                     )
                   : ListView.builder(
@@ -57,28 +57,32 @@ class _HomeState extends State<Home> {
                       itemCount: prov.equbs.length,
                       itemBuilder: ((context, index) {
                         return Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 6, vertical: 8),
                           child: Container(
                             padding:
-                                EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                               const EdgeInsets.only(left: 7, top: 10, bottom: 10),
                             decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 189, 189, 189),
-                                borderRadius: BorderRadius.circular(25)),
+                                color:const Color.fromARGB(255, 189, 189, 189),
+                                borderRadius: BorderRadius.circular(20)),
                             height: MediaQuery.of(context).size.height * 0.18,
                             width: MediaQuery.of(context).size.width,
                             child: Row(
                               children: [
-                                Image.network(
-                                  "https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg",
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.4,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.2,
-                                  fit: BoxFit.contain,
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.asset(
+                                    'image/equb_logo.png',
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.4,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.2,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                                 const SizedBox(width: 5),
                                 Container(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 2),
                                   width:
                                       MediaQuery.of(context).size.width * 0.5,
@@ -92,17 +96,16 @@ class _HomeState extends State<Home> {
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children: [
-                                     const  Text(
-                                        
-                                       'Equb',
+                                    children:[
+                                    const  Text(
+                                        'Equb',
                                         style: TextStyle(fontSize: 15),
                                       ),
                                       SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
-                                                  .width *
-                                              0.005),
+                                                  .height *
+                                              0.002),
                                       Text(
                                         prov.equbs[index].title,
                                         style:const TextStyle(
@@ -112,11 +115,11 @@ class _HomeState extends State<Home> {
                                       SizedBox(
                                           height: MediaQuery.of(context)
                                                   .size
-                                                  .width *
-                                              0.005),
+                                                  .height *
+                                              0.002),
                                       Text(
                                         'Amount :- ${prov.equbs[index].amount.toString()}',
-                                        style: TextStyle(fontSize: 15),
+                                        style: const TextStyle(fontSize: 15),
                                       ),
                                       ElevatedButton(
                                         style: ElevatedButton.styleFrom(
@@ -129,8 +132,15 @@ class _HomeState extends State<Home> {
                                                 Radius.circular(5)),
                                           ),
                                         ),
-                                        onPressed: (() {}),
-                                        child: Text(
+                                        onPressed: (() {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const UDetail()),
+                                          );
+                                        }),
+                                        child: const Text(
                                           'Details',
                                           style: TextStyle(
                                             color: Colors.white,
@@ -146,86 +156,6 @@ class _HomeState extends State<Home> {
                         );
                       }),
                     ),
-        ),
-      ),
-    );
-  }
-}
-
-class test extends StatelessWidget {
-  const test({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
-          decoration: BoxDecoration(
-              color: Color.fromARGB(255, 189, 189, 189),
-              borderRadius: BorderRadius.circular(25)),
-          height: MediaQuery.of(context).size.height * 0.18,
-          width: MediaQuery.of(context).size.width,
-          child: Row(
-            children: [
-              Image.network(
-                "https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg",
-                width: MediaQuery.of(context).size.width * 0.4,
-                height: MediaQuery.of(context).size.height * 0.2,
-                fit: BoxFit.contain,
-              ),
-              const SizedBox(width: 5),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-                width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height * 0.2,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.white, width: 1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Catagory',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.width * 0.005),
-                    Text(
-                      'Name',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.width * 0.005),
-                    Text(
-                      'Amount :- 2500 Birr',
-                      style: TextStyle(fontSize: 15),
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 40),
-                        backgroundColor: Colors.black,
-                        side: BorderSide.none,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                      ),
-                      onPressed: (() {}),
-                      child: Text(
-                        'Details',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
         ),
       ),
     );

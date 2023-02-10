@@ -1,22 +1,19 @@
-import 'package:equb_app/Equb/User/Screens/Home.dart';
+import 'package:equb_app/Equb/User/Screens/UHome.dart';
 import 'package:equb_app/Equb/User/Screens/setting.dart';
 import 'package:flutter/material.dart';
 
-class BHome extends StatefulWidget {
-  const BHome({super.key});
+class UBottom extends StatefulWidget {
+  const UBottom({super.key});
 
   @override
-  State<BHome> createState() => _BHomeState();
+  State<UBottom> createState() => _UBottomState();
 }
 
-class _BHomeState extends State<BHome> {
+class _UBottomState extends State<UBottom> {
   int _index = 0;
 
   List<Widget> pages = [
-    const Home(),
-    const Center(
-      child: Text('cart screen'),
-    ),
+    const UHome(),
     const Setting(),
   ];
 
@@ -40,10 +37,10 @@ class _BHomeState extends State<BHome> {
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.camera),
-            label: 'Camera',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.camera),
+          //   label: 'Camera',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
             label: 'Setting',

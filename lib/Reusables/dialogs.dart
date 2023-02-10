@@ -15,4 +15,16 @@ class DecoratedDialogs {
     }, panaraDialogType: PanaraDialogType.custom);
     return;
   }
+
+  static showSuccess(String message, BuildContext context, String buttonText) {
+    PanaraInfoDialog.show(
+        imagePath: 'assets/images/equb_logo.png',
+        barrierDismissible: false,
+        context,
+        message: message,
+        buttonText: buttonText, onTapDismiss: () {
+      Navigator.of(context).pop();
+    }, panaraDialogType: PanaraDialogType.success);
+    return;
+  }
 }

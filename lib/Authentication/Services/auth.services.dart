@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:equb_app/Authentication/Models/usermodel.dart';
 import 'package:equb_app/Authentication/Shared/Shared.dart';
-import 'package:equb_app/Equb/User/Screens/Home.dart';
+import 'package:equb_app/Equb/Admin/Screens/ABottom.dart';
+import 'package:equb_app/Equb/User/Screens/UBottom.dart';
+import 'package:equb_app/Equb/User/Screens/UHome.dart';
 import 'package:equb_app/Reusables/dialogs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +26,15 @@ class Auth {
       var response = await dio.post(url, data: data);
       LoadingProgress.stop(context);
       storage.write(key: 'token', value: response.data['accessToken']);
-     
+
       role = response.data['role'];
 
       if (role == 'user') {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Home()));
+            context, MaterialPageRoute(builder: (context) => UBottom()));
+      } else if (role == 'admin') {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ABottom()));
       }
     } on DioError catch (e) {
       LoadingProgress.stop(context);
