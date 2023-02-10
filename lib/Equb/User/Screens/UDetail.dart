@@ -1,8 +1,10 @@
+import 'package:equb_app/Equb/Models/UserEqub.Model.dart';
 import 'package:equb_app/Reusables/dialogs.dart';
 import 'package:flutter/material.dart';
 
 class UDetail extends StatefulWidget {
-  const UDetail({super.key});
+  EqubModeL equbModeL;
+  UDetail({required this.equbModeL});
 
   @override
   State<UDetail> createState() => _UDetailState();

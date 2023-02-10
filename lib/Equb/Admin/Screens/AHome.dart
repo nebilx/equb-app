@@ -128,6 +128,7 @@ class _AHomeState extends State<AHome> {
                                             title: prov.equbs[index].title,
                                             description:
                                                 prov.equbs[index].description,
+                                            members: prov.equbs[index].members,
                                             amount: prov.equbs[index].amount,
                                             memberSize:
                                                 prov.equbs[index].memberSize);

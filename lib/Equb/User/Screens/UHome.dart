@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:equb_app/Equb/Models/UserEqub.Model.dart';
 import 'package:equb_app/Equb/User/Screens/UDetail.dart';
 import 'package:equb_app/Equb/User/Services/equb.services.dart';
 import 'package:flutter/material.dart';
@@ -60,10 +61,10 @@ class _UHomeState extends State<UHome> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 6, vertical: 8),
                           child: Container(
-                            padding:
-                               const EdgeInsets.only(left: 7, top: 10, bottom: 10),
+                            padding: const EdgeInsets.only(
+                                left: 7, top: 10, bottom: 10),
                             decoration: BoxDecoration(
-                                color:const Color.fromARGB(255, 189, 189, 189),
+                                color: const Color.fromARGB(255, 189, 189, 189),
                                 borderRadius: BorderRadius.circular(20)),
                             height: MediaQuery.of(context).size.height * 0.18,
                             width: MediaQuery.of(context).size.width,
@@ -72,7 +73,7 @@ class _UHomeState extends State<UHome> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.asset(
-                                    'image/equb_logo.png',
+                                    'assets/images/equb_logo.png',
                                     width:
                                         MediaQuery.of(context).size.width * 0.4,
                                     height: MediaQuery.of(context).size.height *
@@ -96,8 +97,8 @@ class _UHomeState extends State<UHome> {
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    children:[
-                                    const  Text(
+                                    children: [
+                                      const Text(
                                         'Equb',
                                         style: TextStyle(fontSize: 15),
                                       ),
@@ -108,7 +109,7 @@ class _UHomeState extends State<UHome> {
                                               0.002),
                                       Text(
                                         prov.equbs[index].title,
-                                        style:const TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.bold),
                                       ),
@@ -133,11 +134,20 @@ class _UHomeState extends State<UHome> {
                                           ),
                                         ),
                                         onPressed: (() {
+                                          EqubModeL equbModeL = EqubModeL(
+                                              title: prov.equbs[index].title,
+                                              description:
+                                                  prov.equbs[index].description,
+                                              amount: prov.equbs[index].amount,
+                                              members: prov.equbs[index].members,
+
+                                              memberSize:
+                                                  prov.equbs[index].memberSize);
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    const UDetail()),
+                                                     UDetail(equbModeL: equbModeL,)),
                                           );
                                         }),
                                         child: const Text(
