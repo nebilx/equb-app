@@ -1,12 +1,21 @@
+
 import 'package:equb_app/Authentication/Screens/signin.dart';
-import 'package:equb_app/Home/screen/Home.dart';
+import 'package:equb_app/Equb/User/Screens/Home.dart';
+import 'package:equb_app/Equb/User/Services/equb.services.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: 'dotenv/secret.env');
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => UserEqubServices()),
+    ],
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,6 +31,6 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         debugShowCheckedModeBanner: false,
-        home: const Home());
+        home: const SignIn());
   }
 }
