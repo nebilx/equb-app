@@ -28,7 +28,8 @@ class Auth {
       storage.write(key: 'token', value: response.data['accessToken']);
 
       role = response.data['role'];
-
+      id = response.data['id'];
+    
       if (role == 'user') {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => UBottom()));

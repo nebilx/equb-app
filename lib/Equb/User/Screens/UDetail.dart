@@ -166,53 +166,7 @@ class _UDetailState extends State<UDetail> {
                                 return const Text('data');
                               },
                             )
-
-                      // Container(
-                      //   padding:
-                      //      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                      //   width: MediaQuery.of(context).size.width,
-                      //   height: MediaQuery.of(context).size.height * 0.58,
-                      //   decoration: BoxDecoration(
-                      //     border: Border.all(color: Colors.white, width: 1),
-                      //     color: Color.fromARGB(255, 189, 189, 189),
-                      //     borderRadius: BorderRadius.circular(10),
-                      //   ),
-                      //   child: SingleChildScrollView(
-                      //     scrollDirection: Axis.vertical,
-                      //     child: DataTable(
-                      //       dividerThickness: 3,
-                      //       dataTextStyle: TextStyle(
-                      //         color: Colors.black54,
-                      //         fontSize: 14,
-                      //         fontWeight: FontWeight.bold,
-                      //       ),
-                      //       columns: [
-                      //         DataColumn(
-                      //           label: Text('ID'),
-                      //         ),
-                      //         DataColumn(
-                      //           label: Text('Name'),
-                      //         ),
-                      //         DataColumn(
-                      //           label: Text('won'),
-                      //         ),
-                      //       ],
-                      //       rows: [
-                      //         DataRow(cells: [
-                      //           DataCell(Text("1")),
-                      //           DataCell(Text("Alex")),
-                      //           DataCell(Text("1")),
-                      //         ]),
-                      //         DataRow(cells: [
-                      //           DataCell(Text("2")),
-                      //           DataCell(Text("John")),
-                      //           DataCell(Text("2")),
-                      //         ]),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
-                    ],
+                        ],
                   )
                 ],
               ),

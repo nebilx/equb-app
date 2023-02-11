@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:equb_app/Authentication/Shared/Shared.dart';
 import 'package:equb_app/Equb/Models/UserEqub.Model.dart';
 import 'package:equb_app/Equb/User/Screens/UDetail.dart';
 import 'package:equb_app/Equb/User/Services/equb.services.dart';
@@ -133,26 +134,38 @@ class _UHomeState extends State<UHome> {
                                                 Radius.circular(5)),
                                           ),
                                         ),
-                                        onPressed: (() {
-                                          EqubModeL equbModeL = EqubModeL(
-                                              title: prov.equbs[index].title,
-                                              description:
-                                                  prov.equbs[index].description,
-                                              amount: prov.equbs[index].amount,
-                                              members:
-                                                  prov.equbs[index].members,
-                                              memberSize:
-                                                  prov.equbs[index].memberSize);
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => UDetail(
-                                                      equbModeL: equbModeL,
-                                                    )),
-                                          );
-                                        }),
-                                        child: const Text(
-                                          'Details',
+                                        onPressed: !prov.equbs[index].members!
+                                                .contains(id)
+                                            ? () {}
+                                            : (() {
+                                                EqubModeL equbModeL = EqubModeL(
+                                                    title:
+                                                        prov.equbs[index].title,
+                                                    description: prov
+                                                        .equbs[index]
+                                                        .description,
+                                                    amount: prov
+                                                        .equbs[index].amount,
+                                                    members: prov
+                                                        .equbs[index].members,
+                                                    memberSize: prov
+                                                        .equbs[index]
+                                                        .memberSize);
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          UDetail(
+                                                            equbModeL:
+                                                                equbModeL,
+                                                          )),
+                                                );
+                                              }),
+                                        child: Text(
+                                          !prov.equbs[index].members!
+                                                  .contains(id)
+                                              ? 'Join'
+                                              : 'Details',
                                           style: TextStyle(
                                             color: Colors.white,
                                           ),
