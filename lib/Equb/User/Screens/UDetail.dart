@@ -161,12 +161,16 @@ class _UDetailState extends State<UDetail> {
                               child: Text('No members'),
                             )
                           : ListView.builder(
+                              shrinkWrap: true,
                               itemCount: widget.equbModeL.members!.length,
                               itemBuilder: (context, index) {
-                                return const Text('data');
+                                return ListTile(
+                                  leading: Text(widget.equbModeL.members!.length
+                                      .toString()),
+                                );
                               },
                             )
-                        ],
+                    ],
                   )
                 ],
               ),

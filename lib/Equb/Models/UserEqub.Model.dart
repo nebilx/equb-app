@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:collection/collection.dart';
 
 class EqubModeL {
+  String? id;
   String title;
   String description;
   String amount;
@@ -16,6 +17,7 @@ class EqubModeL {
     required this.amount,
     required this.memberSize,
     this.members,
+    this.id,
     this.roundMembers,
     this.winner,
   });
@@ -48,10 +50,10 @@ class EqubModeL {
     result.addAll({'amount': equbModeL.amount});
     result.addAll({'memberSize': equbModeL.memberSize});
     if (members != null) {
-      result.addAll({'members':equbModeL. members});
+      result.addAll({'members': equbModeL.members});
     }
     if (roundMembers != null) {
-      result.addAll({'roundMembers':equbModeL. roundMembers});
+      result.addAll({'roundMembers': equbModeL.roundMembers});
     }
     if (winner != null) {
       result.addAll({'winner': equbModeL.winner});
@@ -62,7 +64,7 @@ class EqubModeL {
 
   factory EqubModeL.fromMap(Map<String, dynamic> map) {
     return EqubModeL(
-      title: map['title'] ?? '',
+        title: map['title'] ?? '',
       description: map['description'] ?? '',
       amount: map['amount'] ?? '',
       memberSize: map['memberSize'] ?? '',

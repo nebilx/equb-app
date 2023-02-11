@@ -136,7 +136,24 @@ class _UHomeState extends State<UHome> {
                                         ),
                                         onPressed: !prov.equbs[index].members!
                                                 .contains(id)
-                                            ? () {}
+                                            ? () {
+                                                EqubModeL equbModeL = EqubModeL(
+                                                  id:prov.equbs[index].id,
+                                                    title:
+                                                        prov.equbs[index].title,
+                                                    description: prov
+                                                        .equbs[index]
+                                                        .description,
+                                                    amount: prov
+                                                        .equbs[index].amount,
+                                                    members: prov
+                                                        .equbs[index].members,
+                                                    memberSize: prov
+                                                        .equbs[index]
+                                                        .memberSize);
+                                                prov.joinEqub(
+                                                    equbModeL, id, context);
+                                              }
                                             : (() {
                                                 EqubModeL equbModeL = EqubModeL(
                                                     title:
