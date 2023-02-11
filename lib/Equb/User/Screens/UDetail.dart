@@ -17,7 +17,7 @@ class _UDetailState extends State<UDetail> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_left_outlined,
             size: 30,
             color: Colors.white,
@@ -26,7 +26,7 @@ class _UDetailState extends State<UDetail> {
             Navigator.pop(context);
           },
         ),
-        title: Center(
+        title: const Center(
           child: Text(
             'Details',
             style: TextStyle(
@@ -39,7 +39,7 @@ class _UDetailState extends State<UDetail> {
       ),
       body: SingleChildScrollView(
         child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(255, 228, 228, 228),
             ),
             width: MediaQuery.of(context).size.width,
@@ -50,23 +50,24 @@ class _UDetailState extends State<UDetail> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 10, top: 10, bottom: 10),
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 189, 189, 189),
+                        color: const Color.fromARGB(255, 189, 189, 189),
                         borderRadius: BorderRadius.circular(15)),
                     height: MediaQuery.of(context).size.height * 0.3,
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       children: [
-                        Image.network(
-                          "https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg",
+                        Image.asset(
+                          "assets/images/equb_logo.png",
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.height * 0.3,
-                          fit: BoxFit.cover,
+                          //fit: BoxFit.cover,
                         ),
                         const SizedBox(width: 5),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 20),
                           width: MediaQuery.of(context).size.width * 0.48,
                           height: MediaQuery.of(context).size.height * 0.3,
@@ -79,8 +80,8 @@ class _UDetailState extends State<UDetail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 50),
+                              const Padding(
+                                padding: EdgeInsets.only(left: 50),
                                 child: Text(
                                   'Catagory',
                                   style: TextStyle(
@@ -89,7 +90,7 @@ class _UDetailState extends State<UDetail> {
                                       color: Colors.white),
                                 ),
                               ),
-                              Divider(
+                              const Divider(
                                 height: 10,
                                 color: Colors.white,
                                 thickness: 3,
@@ -97,7 +98,7 @@ class _UDetailState extends State<UDetail> {
                               SizedBox(
                                   height: MediaQuery.of(context).size.width *
                                       0.005),
-                              Text(
+                              const Text(
                                 'Name',
                                 style: TextStyle(
                                     fontSize: 15,
@@ -107,7 +108,7 @@ class _UDetailState extends State<UDetail> {
                               SizedBox(
                                   height: MediaQuery.of(context).size.width *
                                       0.005),
-                              Text(
+                              const Text(
                                 'Amount :- 2500 Birr',
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.white),
@@ -128,7 +129,7 @@ class _UDetailState extends State<UDetail> {
                                       context,
                                       'okay');
                                 }),
-                                child: Text(
+                                child: const Text(
                                   'Drop',
                                   style: TextStyle(
                                     color: Colors.black,
@@ -145,8 +146,8 @@ class _UDetailState extends State<UDetail> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 30),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 30),
                         child: Text(
                           'Members',
                           style: TextStyle(
@@ -155,51 +156,62 @@ class _UDetailState extends State<UDetail> {
                           ),
                         ),
                       ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.58,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white, width: 1),
-                          color: Color.fromARGB(255, 189, 189, 189),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: DataTable(
-                            dividerThickness: 3,
-                            dataTextStyle: TextStyle(
-                              color: Colors.black54,
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            columns: [
-                              DataColumn(
-                                label: Text('ID'),
-                              ),
-                              DataColumn(
-                                label: Text('Name'),
-                              ),
-                              DataColumn(
-                                label: Text('won'),
-                              ),
-                            ],
-                            rows: [
-                              DataRow(cells: [
-                                DataCell(Text("1")),
-                                DataCell(Text("Alex")),
-                                DataCell(Text("1")),
-                              ]),
-                              DataRow(cells: [
-                                DataCell(Text("2")),
-                                DataCell(Text("John")),
-                                DataCell(Text("2")),
-                              ]),
-                            ],
-                          ),
-                        ),
-                      ),
+                      widget.equbModeL.members!.isEmpty
+                          ? const Center(
+                              child: Text('No members'),
+                            )
+                          : ListView.builder(
+                              itemCount: widget.equbModeL.members!.length,
+                              itemBuilder: (context, index) {
+                                return const Text('data');
+                              },
+                            )
+
+                      // Container(
+                      //   padding:
+                      //      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      //   width: MediaQuery.of(context).size.width,
+                      //   height: MediaQuery.of(context).size.height * 0.58,
+                      //   decoration: BoxDecoration(
+                      //     border: Border.all(color: Colors.white, width: 1),
+                      //     color: Color.fromARGB(255, 189, 189, 189),
+                      //     borderRadius: BorderRadius.circular(10),
+                      //   ),
+                      //   child: SingleChildScrollView(
+                      //     scrollDirection: Axis.vertical,
+                      //     child: DataTable(
+                      //       dividerThickness: 3,
+                      //       dataTextStyle: TextStyle(
+                      //         color: Colors.black54,
+                      //         fontSize: 14,
+                      //         fontWeight: FontWeight.bold,
+                      //       ),
+                      //       columns: [
+                      //         DataColumn(
+                      //           label: Text('ID'),
+                      //         ),
+                      //         DataColumn(
+                      //           label: Text('Name'),
+                      //         ),
+                      //         DataColumn(
+                      //           label: Text('won'),
+                      //         ),
+                      //       ],
+                      //       rows: [
+                      //         DataRow(cells: [
+                      //           DataCell(Text("1")),
+                      //           DataCell(Text("Alex")),
+                      //           DataCell(Text("1")),
+                      //         ]),
+                      //         DataRow(cells: [
+                      //           DataCell(Text("2")),
+                      //           DataCell(Text("John")),
+                      //           DataCell(Text("2")),
+                      //         ]),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   )
                 ],

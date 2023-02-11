@@ -58,11 +58,11 @@ class _ADetailState extends State<ADetail> {
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       children: [
-                        Image.network(
-                          "https://img-19.commentcamarche.net/cI8qqj-finfDcmx6jMK6Vr-krEw=/1500x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg",
+                        Image.asset(
+                          "assets/images/equb_logo.png",
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.height * 0.3,
-                          fit: BoxFit.cover,
+                          // fit: BoxFit.cover,
                         ),
                         const SizedBox(width: 5),
                         Container(
@@ -144,13 +144,11 @@ class _ADetailState extends State<ADetail> {
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                  
-                          widget.equbModeL.members!.isEmpty
+                  widget.equbModeL.members!.isEmpty
                       ? Center(
                           child: Text('No members'),
                         )
                       : Text('data...')
-                  
                 ],
               ),
             )),

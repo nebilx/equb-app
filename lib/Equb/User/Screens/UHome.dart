@@ -78,7 +78,7 @@ class _UHomeState extends State<UHome> {
                                         MediaQuery.of(context).size.width * 0.4,
                                     height: MediaQuery.of(context).size.height *
                                         0.2,
-                                    fit: BoxFit.cover,
+                                    //  fit: BoxFit.cover,
                                   ),
                                 ),
                                 const SizedBox(width: 5),
@@ -139,15 +139,16 @@ class _UHomeState extends State<UHome> {
                                               description:
                                                   prov.equbs[index].description,
                                               amount: prov.equbs[index].amount,
-                                              members: prov.equbs[index].members,
-
+                                              members:
+                                                  prov.equbs[index].members,
                                               memberSize:
                                                   prov.equbs[index].memberSize);
                                           Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) =>
-                                                     UDetail(equbModeL: equbModeL,)),
+                                                builder: (context) => UDetail(
+                                                      equbModeL: equbModeL,
+                                                    )),
                                           );
                                         }),
                                         child: const Text(
