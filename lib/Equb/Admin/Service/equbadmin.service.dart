@@ -44,16 +44,20 @@ class AdminEqubService with ChangeNotifier {
       var data = response.data;
       equbs.clear();
       data.forEach((e) => {
-            equbs.add(EqubModeL(
-                id: e['_id'],
-                title: e['title'],
-                description: e['description'],
-                amount: e['amount'].toString(),
-                memberSize: e['memberSize'].toString(),
-                members: e['members']))
+            equbs.add(
+              EqubModeL(
+                  id: e['_id'],
+                  title: e['title'],
+                  description: e['description'],
+                  amount: e['amount'].toString(),
+                  memberSize: e['memberSize'].toString(),
+                  members: e['members'],
+                  winners: e['winners'],
+                  roundMembers: e['roundMembers']),
+            )
           });
       equbs.forEach((element) {
-        element.members!.forEach((element) {
+        element.roundMembers!.forEach((element) {
           print(element);
         });
       });

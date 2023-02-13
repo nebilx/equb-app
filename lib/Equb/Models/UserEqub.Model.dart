@@ -29,7 +29,7 @@ class EqubModeL {
     String? memberSize,
     List<dynamic>? members,
     List<dynamic>? roundMembers,
-    String? winnerssssss,
+    List<dynamic>? winners,
   }) {
     return EqubModeL(
       title: title ?? this.title,
@@ -64,7 +64,7 @@ class EqubModeL {
 
   factory EqubModeL.fromMap(Map<String, dynamic> map) {
     return EqubModeL(
-        title: map['title'] ?? '',
+      title: map['title'] ?? '',
       description: map['description'] ?? '',
       amount: map['amount'] ?? '',
       memberSize: map['memberSize'] ?? '',

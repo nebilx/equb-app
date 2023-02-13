@@ -1,5 +1,6 @@
 import 'package:equb_app/Equb/Admin/Screens/Spinwheel.dart';
 import 'package:equb_app/Equb/Models/UserEqub.Model.dart';
+import 'package:equb_app/Reusables/dialogs.dart';
 import 'package:flutter/material.dart';
 
 class ADetail extends StatefulWidget {
@@ -126,14 +127,25 @@ class _ADetailState extends State<ADetail> {
                                 onPressed: widget.equbModeL.members!.length <
                                         int.parse(widget.equbModeL.memberSize)
                                     ? () {}
-                                    : (() {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const SpinWheel()),
-                                        );
-                                      }),
+                                    : widget.equbModeL.roundMembers!.isEmpty
+                                        ? () {
+                                            DecoratedDialogs.showError(
+                                                'no participants sent confirmation',
+                                                context,
+                                                'okay');
+                                          }
+                                        : (() {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SpinWheel(
+                                                        roundMems: widget
+                                                            .equbModeL
+                                                            .roundMembers!,
+                                                      )),
+                                            );
+                                          }),
                                 child: Text(
                                   widget.equbModeL.members!.length <
                                           int.parse(widget.equbModeL.memberSize)

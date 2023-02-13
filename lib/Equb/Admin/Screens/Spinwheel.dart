@@ -3,7 +3,8 @@ import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SpinWheel extends StatefulWidget {
-  const SpinWheel({super.key});
+  List<dynamic> roundMems;
+  SpinWheel({required this.roundMems});
 
   @override
   State<SpinWheel> createState() => _SpinWheelState();
@@ -13,7 +14,14 @@ class _SpinWheelState extends State<SpinWheel> {
   final selected = BehaviorSubject<int>();
   int rewards = 0;
 
-  List<int> items = [10, 20, 50, 80, 100, 200, 500, 1000, 2000];
+  List<FortuneItem> getMembers() {
+    List<FortuneItem> items = [];
+    widget.roundMems.forEach((element) {
+      items.add(FortuneItem(child: Text(element['fullname'])));
+    });
+
+    return items;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,32 +64,12 @@ class _SpinWheelState extends State<SpinWheel> {
                   child: FortuneWheel(
                     selected: selected.stream,
                     animateFirst: false,
-                    items: [
-                      for (int i = 0; i < items.length; i++) ...<FortuneItem>{
-                        FortuneItem(
-                          child: Text(
-                            items[i].toString(),
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                          style: FortuneItemStyle(
-                            color: Colors.white,
-                            borderColor: Colors.black,
-                            borderWidth: 5,
-                          ),
-                        ),
-                      },
-                    ],
+                    items: getMembers(),
                     onAnimationEnd: () {
-                      setState(() {
-                        rewards = items[selected.value];
-                      });
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text("You Admasu won " +
-                              rewards.toString() +
-                              " Birr!"),
+                          content: Text(
+                              widget.roundMems[selected.value]['fullname']+"has won the equb"),
                         ),
                       );
                     },
@@ -91,7 +79,7 @@ class _SpinWheelState extends State<SpinWheel> {
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      selected.add(Fortune.randomInt(0, items.length));
+                      selected.add(Fortune.randomInt(0, getMembers().length));
                     });
                   },
                   child: Container(
