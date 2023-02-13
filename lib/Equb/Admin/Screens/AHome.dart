@@ -126,7 +126,11 @@ class _AHomeState extends State<AHome> {
                                       ),
                                       onPressed: (() {
                                         EqubModeL equbModeL = EqubModeL(
+                                          id: prov.equbs[index].id,
+                                          roundMembers: prov.equbs[index].roundMembers,
+                                          winners: prov.equbs[index].winners,
                                             title: prov.equbs[index].title,
+
                                             description:
                                                 prov.equbs[index].description,
                                             members: prov.equbs[index].members,

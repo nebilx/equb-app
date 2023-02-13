@@ -17,7 +17,7 @@ class _ADetailState extends State<ADetail> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_left_outlined,
             size: 30,
             color: Colors.white,
@@ -26,7 +26,7 @@ class _ADetailState extends State<ADetail> {
             Navigator.pop(context);
           },
         ),
-        title: Center(
+        title: const Center(
           child: Text(
             'Details',
             style: TextStyle(
@@ -39,20 +39,21 @@ class _ADetailState extends State<ADetail> {
       ),
       body: SingleChildScrollView(
         child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color.fromARGB(255, 228, 228, 228),
             ),
             width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                    padding:
+                        const EdgeInsets.only(left: 10, top: 10, bottom: 10),
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 189, 189, 189),
+                        color: const Color.fromARGB(255, 189, 189, 189),
                         borderRadius: BorderRadius.circular(15)),
                     height: MediaQuery.of(context).size.height * 0.3,
                     width: MediaQuery.of(context).size.width,
@@ -66,7 +67,7 @@ class _ADetailState extends State<ADetail> {
                         ),
                         const SizedBox(width: 5),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 20),
                           width: MediaQuery.of(context).size.width * 0.48,
                           height: MediaQuery.of(context).size.height * 0.3,
@@ -79,9 +80,9 @@ class _ADetailState extends State<ADetail> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 50),
-                                child: const Text(
+                              const Padding(
+                                padding: EdgeInsets.only(left: 50),
+                                child: Text(
                                   'Equb',
                                   style: TextStyle(
                                       fontSize: 20,
@@ -89,7 +90,7 @@ class _ADetailState extends State<ADetail> {
                                       color: Colors.white),
                                 ),
                               ),
-                              Divider(
+                              const Divider(
                                 height: 10,
                                 color: Colors.white,
                                 thickness: 3,
@@ -99,7 +100,7 @@ class _ADetailState extends State<ADetail> {
                                       0.005),
                               Text(
                                 widget.equbModeL.title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white),
@@ -109,7 +110,7 @@ class _ADetailState extends State<ADetail> {
                                       0.005),
                               Text(
                                 'Amount :-  ${widget.equbModeL.amount} ',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 15, color: Colors.white),
                               ),
                               ElevatedButton(
@@ -122,17 +123,23 @@ class _ADetailState extends State<ADetail> {
                                         BorderRadius.all(Radius.circular(5)),
                                   ),
                                 ),
-                                onPressed: (() {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SpinWheel()),
-                                  );
-                                }),
+                                onPressed: widget.equbModeL.members!.length <
+                                        int.parse(widget.equbModeL.memberSize)
+                                    ? () {}
+                                    : (() {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const SpinWheel()),
+                                        );
+                                      }),
                                 child: Text(
-                                  'Draw',
-                                  style: TextStyle(
+                                  widget.equbModeL.members!.length <
+                                          int.parse(widget.equbModeL.memberSize)
+                                      ? 'Equb not full'
+                                      : 'draw',
+                                  style: const TextStyle(
                                     color: Colors.black,
                                   ),
                                 ),
@@ -145,7 +152,7 @@ class _ADetailState extends State<ADetail> {
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                   widget.equbModeL.members!.isEmpty
-                      ? Center(
+                      ? const Center(
                           child: Text('No members'),
                         )
                       : ListView.builder(
@@ -156,7 +163,7 @@ class _ADetailState extends State<ADetail> {
                               title: Text(
                                   widget.equbModeL.members![index]['fullname']),
                               leading: Image.network(
-                                  widget.equbModeL!.members![index]['image']),
+                                  widget.equbModeL.members![index]['image']),
                               subtitle: Text(
                                   widget.equbModeL.members![index]['phone']),
                             );
