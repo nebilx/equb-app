@@ -61,4 +61,23 @@ class UserEqubServices with ChangeNotifier {
       DecoratedDialogs.showError(e.response!.data, context, 'okay');
     }
   }
+
+  payEqub(String equbId, String id, BuildContext context) async {
+    LoadingProgress.start(context);
+    String url = '${dotenv.get('SERVER_URL')}equb/payEqub';
+    Dio dio = Dio();
+
+    String token = (await storage.read(key: 'token'))!;
+    try {
+      var response = await dio.patch(url,
+          queryParameters: {"equbId": equbId, "id": id},
+          options: Options(headers: {'Authorization': 'Bearer $token'}));
+      LoadingProgress.stop(context);
+
+      DecoratedDialogs.showSuccess(response.data['message'], context, 'okay');
+    } on DioError catch (e) {
+      LoadingProgress.stop(context);
+      DecoratedDialogs.showError(e.response!.data, context, 'okay');
+    }
+  }
 }

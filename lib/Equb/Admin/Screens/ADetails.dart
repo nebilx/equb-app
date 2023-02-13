@@ -148,7 +148,19 @@ class _ADetailState extends State<ADetail> {
                       ? Center(
                           child: Text('No members'),
                         )
-                      : Text('data...')
+                      : ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: widget.equbModeL.members!.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(
+                                  widget.equbModeL.members![index]['fullname']),
+                              leading: Image.network(
+                                  widget.equbModeL!.members![index]['image']),
+                              subtitle: Text(
+                                  widget.equbModeL.members![index]['phone']),
+                            );
+                          })
                 ],
               ),
             )),

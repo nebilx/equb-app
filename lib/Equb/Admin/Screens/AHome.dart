@@ -1,4 +1,5 @@
 import 'package:equb_app/Equb/Admin/Screens/ADetails.dart';
+import 'package:equb_app/Equb/Admin/Service/equbadmin.service.dart';
 import 'package:equb_app/Equb/Models/UserEqub.Model.dart';
 import 'package:equb_app/Equb/User/Services/equb.services.dart';
 import 'package:flutter/material.dart';
@@ -15,12 +16,12 @@ class _AHomeState extends State<AHome> {
   @override
   void initState() {
     // TODO: implement initState
-    Provider.of<UserEqubServices>(context, listen: false).getEqubs();
+    Provider.of<AdminEqubService>(context, listen: false).getEqub();
     super.initState();
   }
 
   Widget build(BuildContext context) {
-    final prov = Provider.of<UserEqubServices>(context);
+    final prov = Provider.of<AdminEqubService>(context);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

@@ -138,7 +138,7 @@ class _UHomeState extends State<UHome> {
                                                 .contains(id)
                                             ? () {
                                                 EqubModeL equbModeL = EqubModeL(
-                                                  id:prov.equbs[index].id,
+                                                    id: prov.equbs[index].id,
                                                     title:
                                                         prov.equbs[index].title,
                                                     description: prov
@@ -156,6 +156,7 @@ class _UHomeState extends State<UHome> {
                                               }
                                             : (() {
                                                 EqubModeL equbModeL = EqubModeL(
+                                                    id: prov.equbs[index].id,
                                                     title:
                                                         prov.equbs[index].title,
                                                     description: prov

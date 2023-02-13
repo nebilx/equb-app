@@ -10,7 +10,7 @@ class EqubModeL {
   String memberSize;
   List<dynamic>? members;
   List<dynamic>? roundMembers;
-  String? winner;
+  List<dynamic>? winners;
   EqubModeL({
     required this.title,
     required this.description,
@@ -19,7 +19,7 @@ class EqubModeL {
     this.members,
     this.id,
     this.roundMembers,
-    this.winner,
+    this.winners,
   });
 
   EqubModeL copyWith({
@@ -29,7 +29,7 @@ class EqubModeL {
     String? memberSize,
     List<dynamic>? members,
     List<dynamic>? roundMembers,
-    String? winner,
+    String? winnerssssss,
   }) {
     return EqubModeL(
       title: title ?? this.title,
@@ -38,7 +38,7 @@ class EqubModeL {
       memberSize: memberSize ?? this.memberSize,
       members: members ?? this.members,
       roundMembers: roundMembers ?? this.roundMembers,
-      winner: winner ?? this.winner,
+      winners: winners ?? this.winners,
     );
   }
 
@@ -55,8 +55,8 @@ class EqubModeL {
     if (roundMembers != null) {
       result.addAll({'roundMembers': equbModeL.roundMembers});
     }
-    if (winner != null) {
-      result.addAll({'winner': equbModeL.winner});
+    if (winners != null) {
+      result.addAll({'winners': equbModeL.winners});
     }
 
     return result;
@@ -70,7 +70,7 @@ class EqubModeL {
       memberSize: map['memberSize'] ?? '',
       members: List<dynamic>.from(map['members']),
       roundMembers: List<dynamic>.from(map['roundMembers']),
-      winner: map['winner'],
+      winners: map['winners'],
     );
   }
 
@@ -81,7 +81,7 @@ class EqubModeL {
 
   @override
   String toString() {
-    return 'UserEqubModeL(title: $title, description: $description, amount: $amount, memberSize: $memberSize, members: $members, roundMembers: $roundMembers, winner: $winner)';
+    return 'UserEqubModeL(title: $title, description: $description, amount: $amount, memberSize: $memberSize, members: $members, roundMembers: $roundMembers, winnersssssss: $winners)';
   }
 
   @override
@@ -96,7 +96,7 @@ class EqubModeL {
         other.memberSize == memberSize &&
         listEquals(other.members, members) &&
         listEquals(other.roundMembers, roundMembers) &&
-        other.winner == winner;
+        other.winners == winners;
   }
 
   @override
@@ -107,6 +107,6 @@ class EqubModeL {
         memberSize.hashCode ^
         members.hashCode ^
         roundMembers.hashCode ^
-        winner.hashCode;
+        winners.hashCode;
   }
 }
