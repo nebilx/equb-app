@@ -1,4 +1,5 @@
 import 'package:equb_app/Authentication/Screens/signin.dart';
+import 'package:equb_app/Equb/Finance/Screens/FBottom.dart';
 import 'package:equb_app/Equb/User/Services/equb.services.dart';
 import 'package:equb_app/splash.dart';
 

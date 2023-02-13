@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:equb_app/Authentication/Models/usermodel.dart';
 import 'package:equb_app/Authentication/Shared/Shared.dart';
 import 'package:equb_app/Equb/Admin/Screens/ABottom.dart';
+import 'package:equb_app/Equb/Finance/Screens/FBottom.dart';
 import 'package:equb_app/Equb/User/Screens/UBottom.dart';
 import 'package:equb_app/Equb/User/Screens/UHome.dart';
 import 'package:equb_app/Reusables/dialogs.dart';
@@ -29,13 +30,16 @@ class Auth {
 
       role = response.data['role'];
       id = response.data['id'];
-    
+
       if (role == 'user') {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => UBottom()));
       } else if (role == 'admin') {
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => ABottom()));
+      } else if (role == 'finance') {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => FBottom()));
       }
     } on DioError catch (e) {
       LoadingProgress.stop(context);
