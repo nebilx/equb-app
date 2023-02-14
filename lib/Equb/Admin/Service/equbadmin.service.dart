@@ -101,4 +101,21 @@ class AdminEqubService with ChangeNotifier {
       DecoratedDialogs.showError(e.response!.data['message'], context, 'ok');
     }
   }
+
+  clearEqub(String id, BuildContext context) async {
+    String url = '${dotenv.get('SERVER_URL')}equb/clear';
+    Dio dio = Dio();
+
+    String token = (await storage.read(key: 'token'))!;
+    try {
+      var response = await dio.patch(url,
+          options: Options(headers: {"Authorization": "Bearer $token"}),
+          queryParameters: {
+            "equbId": id,
+          });
+      DecoratedDialogs.showSuccess('success', context, 'okay');
+    } on DioError catch (e) {
+      DecoratedDialogs.showError('Error occured', context, 'ok');
+    }
+  }
 }

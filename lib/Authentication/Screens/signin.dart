@@ -102,8 +102,8 @@ class _SignInState extends State<SignIn> {
                   }
                   Auth mAuth = Auth();
 
-                  mAuth.login(
-                      _userController.text, _passwordController.text, context);
+                  mAuth.login(_userController.text.trim(),
+                      _passwordController.text.trim(), context);
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity, 50),

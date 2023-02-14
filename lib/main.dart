@@ -1,8 +1,10 @@
 
 
+
 import 'package:equb_app/Authentication/Screens/signin.dart';
 import 'package:equb_app/Equb/Admin/Service/equbadmin.service.dart';
 import 'package:equb_app/Equb/Finance/Screens/FBottom.dart';
+import 'package:equb_app/Equb/Finance/Services/message.service.dart';
 import 'package:equb_app/Equb/User/Services/equb.services.dart';
 import 'package:equb_app/splash.dart';
 
@@ -16,7 +18,8 @@ void main() async {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (context) => UserEqubServices()),
-      ChangeNotifierProvider(create: (context)=>AdminEqubService())
+      ChangeNotifierProvider(create: (context)=>AdminEqubService()),
+      ChangeNotifierProvider(create: (context)=>MessageService())
     ],
     child: MyApp(),
   ));

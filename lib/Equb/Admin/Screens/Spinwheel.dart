@@ -8,7 +8,8 @@ class SpinWheel extends StatefulWidget {
   List<dynamic> roundMems;
   String equbId;
   int amount;
-  SpinWheel({required this.roundMems, required this.equbId, required this.amount});
+  SpinWheel(
+      {required this.roundMems, required this.equbId, required this.amount});
 
   @override
   State<SpinWheel> createState() => _SpinWheelState();
@@ -66,35 +67,42 @@ class _SpinWheelState extends State<SpinWheel> {
               children: [
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.4,
-                  child: FortuneWheel(
-                    selected: selected.stream,
-                    animateFirst: false,
-                    items: getMembers(),
-                    onAnimationEnd: () {
-                      prov.declareWinner(
-                          widget.equbId,
-                          widget.roundMems[selected.value]["_id"],
-                          context,
-                          widget.amount,
-                          widget.roundMems[selected.value]['fullname'],
-                          widget.roundMems, );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(widget.roundMems[selected.value]
-                                  ['fullname'] +
-                              "has won the equb"),
+                  child: widget.roundMems.length <= 1
+                      ? const Center(
+                          child: Text('only one member has confirmed'))
+                      : FortuneWheel(
+                          selected: selected.stream,
+                          animateFirst: false,
+                          items: getMembers(),
+                          onAnimationEnd: () {
+                            prov.declareWinner(
+                              widget.equbId,
+                              widget.roundMems[selected.value]["_id"],
+                              context,
+                              widget.amount,
+                              widget.roundMems[selected.value]['fullname'],
+                              widget.roundMems,
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(widget.roundMems[selected.value]
+                                        ['fullname'] +
+                                    "has won the equb"),
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.15),
                 GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      selected.add(Fortune.randomInt(0, getMembers().length));
-                    });
-                  },
+                  onTap: widget.roundMems.length <= 1
+                      ? null
+                      : () {
+                          setState(() {
+                            selected
+                                .add(Fortune.randomInt(0, getMembers().length));
+                          });
+                        },
                   child: Container(
                     height: 40,
                     width: 120,
@@ -112,6 +120,30 @@ class _SpinWheelState extends State<SpinWheel> {
                     ),
                   ),
                 ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                GestureDetector(
+                  onTap: widget.roundMems.length <= 1
+                      ? null
+                      : () {
+                          prov.clearEqub(widget.equbId, context);
+                        },
+                  child: Container(
+                    height: 40,
+                    width: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Clear",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),

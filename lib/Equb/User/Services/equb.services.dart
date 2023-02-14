@@ -80,6 +80,7 @@ class UserEqubServices with ChangeNotifier {
 
       DecoratedDialogs.showSuccess(response.data['message'], context, 'okay');
     } on DioError catch (e) {
+    
       LoadingProgress.stop(context);
       DecoratedDialogs.showError(e.response!.data, context, 'okay');
     }

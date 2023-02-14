@@ -1,8 +1,10 @@
+import 'package:equb_app/Equb/Finance/Models/message.models.dart';
 import 'package:equb_app/Reusables/dialogs.dart';
 import 'package:flutter/material.dart';
 
 class FDetails extends StatefulWidget {
-  const FDetails({super.key});
+  MessageModel message;
+  FDetails({required this.message});
 
   @override
   State<FDetails> createState() => _TFDetailsState();
@@ -80,7 +82,7 @@ class _TFDetailsState extends State<FDetails> {
                             const Padding(
                               padding: EdgeInsets.only(left: 50),
                               child: Text(
-                                'Catagory',
+                                'Equb',
                                 style: TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.bold,
@@ -95,8 +97,8 @@ class _TFDetailsState extends State<FDetails> {
                             SizedBox(
                                 height:
                                     MediaQuery.of(context).size.width * 0.005),
-                            const Text(
-                              'Name',
+                            Text(
+                              widget.message.title,
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.bold,
@@ -105,8 +107,8 @@ class _TFDetailsState extends State<FDetails> {
                             SizedBox(
                                 height:
                                     MediaQuery.of(context).size.width * 0.005),
-                            const Text(
-                              'Amount :- 2500 Birr',
+                            Text(
+                              'Amount :- ${widget.message.amount.toString()}',
                               style:
                                   TextStyle(fontSize: 15, color: Colors.white),
                             ),
@@ -149,7 +151,7 @@ class _TFDetailsState extends State<FDetails> {
                   height: MediaQuery.of(context).size.height * 0.05,
                   width: MediaQuery.of(context).size.width,
                   child: Text(
-                    'Winner is "Alemu Demise"',
+                    'Winner  ${widget.message.winner}',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 15,
@@ -159,48 +161,27 @@ class _TFDetailsState extends State<FDetails> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.015),
                 Container(
-                  padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 2),
-                      color: const Color.fromARGB(255, 189, 189, 189),
-                      borderRadius: BorderRadius.circular(15)),
-                  height: MediaQuery.of(context).size.height * 0.5,
-                  width: MediaQuery.of(context).size.width,
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: DataTable(
-                      dividerThickness: 3,
-                      dataTextStyle: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      columns: [
-                        DataColumn(
-                          label: Text('ID'),
-                        ),
-                        DataColumn(
-                          label: Text('Name'),
-                        ),
-                        DataColumn(
-                          label: Text('won'),
-                        ),
-                      ],
-                      rows: [
-                        DataRow(cells: [
-                          DataCell(Text("1")),
-                          DataCell(Text("Alex")),
-                          DataCell(Text("1")),
-                        ]),
-                        DataRow(cells: [
-                          DataCell(Text("2")),
-                          DataCell(Text("John")),
-                          DataCell(Text("2")),
-                        ]),
-                      ],
-                    ),
-                  ),
-                ),
+                    padding:
+                        const EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 2),
+                        color: const Color.fromARGB(255, 189, 189, 189),
+                        borderRadius: BorderRadius.circular(15)),
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    width: MediaQuery.of(context).size.width,
+                    child: widget.message.participants.isEmpty
+                        ? Text('No participants')
+                        : ListView.builder(
+                            itemCount: widget.message.participants.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                  leading: Image.network(widget
+                                      .message.participants[index]['image']),
+                                  title: Text(widget.message.participants[index]
+                                      ['fullname']),
+                                  subtitle: Text(widget
+                                      .message.participants[index]['phone']));
+                            })),
               ],
             ),
           ),
