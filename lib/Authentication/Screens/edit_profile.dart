@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:equb_app/Authentication/Shared/Shared.dart';
 import 'package:flutter/material.dart';
 
 class UpdateProfile extends StatelessWidget {
@@ -47,8 +48,8 @@ class UpdateProfile extends StatelessWidget {
                         height: 120,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(100),
-                          child: Image.asset(
-                            'assets/images/kit.png',
+                          child: Image.network(
+                            image,
                             fit: BoxFit.contain,
                           ),
                         ),

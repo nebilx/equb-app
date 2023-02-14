@@ -1,5 +1,6 @@
 import 'package:equb_app/Authentication/Screens/edit_profile.dart';
 import 'package:equb_app/Authentication/Screens/signin.dart';
+import 'package:equb_app/Authentication/Shared/Shared.dart';
 import 'package:flutter/material.dart';
 
 class Setting extends StatelessWidget {
@@ -37,7 +38,7 @@ class Setting extends StatelessWidget {
                       borderRadius: BorderRadius.circular(100),
                       child: CircleAvatar(
                         backgroundImage: NetworkImage(
-                          'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=160',
+                          image,
                         ),
                       ),
                     ),
@@ -66,37 +67,37 @@ class Setting extends StatelessWidget {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               Text(
-                'James Paul',
+                fullname,
                 style:
                     const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
               Text(
-                'ID:- 0912234523',
+                'Phone:- $phone',
                 style: const TextStyle(fontSize: 13),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.5,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    side: BorderSide.none,
-                    shape: const StadiumBorder(),
-                  ),
-                  onPressed: (() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => UpdateProfile()));
-                  }),
-                  child: Text(
-                    'Edit Profile',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
+              // SizedBox(
+              //   width: MediaQuery.of(context).size.width * 0.5,
+              //   child: ElevatedButton(
+              //     style: ElevatedButton.styleFrom(
+              //       backgroundColor: Colors.black,
+              //       side: BorderSide.none,
+              //       shape: const StadiumBorder(),
+              //     ),
+              //     onPressed: (() {
+              //       Navigator.push(
+              //           context,
+              //           MaterialPageRoute(
+              //               builder: (context) => UpdateProfile()));
+              //     }),
+              //     child: Text(
+              //       'Edit Profile',
+              //       style: TextStyle(
+              //         color: Colors.white,
+              //       ),
+              //     ),
+              //   ),
+              // ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               const Divider(thickness: 4),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),

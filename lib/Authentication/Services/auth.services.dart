@@ -30,6 +30,9 @@ class Auth {
 
       role = response.data['role'];
       id = response.data['id'];
+      fullname = response.data['fullname'];
+      phone = response.data['phone'];
+      image = response.data['image'];
 
       if (role == 'user') {
         Navigator.push(
