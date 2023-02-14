@@ -1,10 +1,14 @@
+import 'package:equb_app/Equb/Admin/Service/equbadmin.service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
+import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SpinWheel extends StatefulWidget {
   List<dynamic> roundMems;
-  SpinWheel({required this.roundMems});
+  String equbId;
+  int amount;
+  SpinWheel({required this.roundMems, required this.equbId, required this.amount});
 
   @override
   State<SpinWheel> createState() => _SpinWheelState();
@@ -25,11 +29,12 @@ class _SpinWheelState extends State<SpinWheel> {
 
   @override
   Widget build(BuildContext context) {
+    final prov = Provider.of<AdminEqubService>(context);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_left_outlined,
               size: 30,
               color: Colors.white,
@@ -38,7 +43,7 @@ class _SpinWheelState extends State<SpinWheel> {
               Navigator.pop(context);
             },
           ),
-          title: Center(
+          title: const Center(
             child: Text(
               'Winner',
               style: TextStyle(
@@ -50,7 +55,7 @@ class _SpinWheelState extends State<SpinWheel> {
           ),
         ),
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.black26,
           ),
           height: MediaQuery.of(context).size.height,
@@ -66,10 +71,18 @@ class _SpinWheelState extends State<SpinWheel> {
                     animateFirst: false,
                     items: getMembers(),
                     onAnimationEnd: () {
+                      prov.declareWinner(
+                          widget.equbId,
+                          widget.roundMems[selected.value]["_id"],
+                          context,
+                          widget.amount,
+                          widget.roundMems[selected.value]['fullname'],
+                          widget.roundMems, );
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text(
-                              widget.roundMems[selected.value]['fullname']+"has won the equb"),
+                          content: Text(widget.roundMems[selected.value]
+                                  ['fullname'] +
+                              "has won the equb"),
                         ),
                       );
                     },

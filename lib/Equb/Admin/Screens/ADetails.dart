@@ -140,6 +140,8 @@ class _ADetailState extends State<ADetail> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       SpinWheel(
+                                                        amount: int.parse(widget.equbModeL.amount),
+                                                        equbId: widget.equbModeL.id!,
                                                         roundMems: widget
                                                             .equbModeL
                                                             .roundMembers!,

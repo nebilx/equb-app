@@ -41,7 +41,8 @@ class _AHomeState extends State<AHome> {
         padding: const EdgeInsets.symmetric(horizontal: 5),
         height: MediaQuery.of(context).size.height,
         child: prov.isLoading
-            ? Center(child: CircularProgressIndicator())
+            ? Center(child: CircularProgressIndicator()):
+            prov.isError? const Center(child: Text('Error occured'),)
             : prov.equbs.isEmpty
                 ? Center(
                     child: Text('No equb'),

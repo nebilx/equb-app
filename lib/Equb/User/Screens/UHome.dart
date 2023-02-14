@@ -49,11 +49,13 @@ class _UHomeState extends State<UHome> {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : prov.equbs.isEmpty
+              :   prov.isError? const Center(child: Text('Error occured'),):
+              
+              prov.equbs.isEmpty
                   ? const Center(
                       child: Text('no Equbs'),
                     )
-                  : ListView.builder(
+                 :  ListView.builder(
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
                       itemCount: prov.equbs.length,

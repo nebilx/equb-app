@@ -12,6 +12,7 @@ import '../../../Authentication/Configuration/auth.config.dart';
 class UserEqubServices with ChangeNotifier {
   List<EqubModeL> equbs = [];
   bool isLoading = true;
+  bool isError = false;
 
   getEqubs() async {
     String url = '${dotenv.get('SERVER_URL')}equb/getEqub';
@@ -36,7 +37,10 @@ class UserEqubServices with ChangeNotifier {
       isLoading = false;
       notifyListeners();
     } on DioError catch (e) {
-      print(e.response!.data);
+      isLoading = false;
+      isError = true;
+      notifyListeners();
+
     }
   }
 
