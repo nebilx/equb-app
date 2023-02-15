@@ -1,5 +1,6 @@
 import 'package:equb_app/Authentication/Shared/Shared.dart';
 import 'package:equb_app/Equb/Models/UserEqub.Model.dart';
+import 'package:equb_app/Equb/User/Screens/UHome.dart';
 import 'package:equb_app/Equb/User/Services/equb.services.dart';
 import 'package:equb_app/Reusables/dialogs.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,20 @@ class UDetail extends StatefulWidget {
 }
 
 class _UDetailState extends State<UDetail> {
+  @override
+  // void deactivate() {
+  //   Provider.of<UserEqubServices>(context, listen: false);
+  //   // TODO: implement deactivate
+  //   super.deactivate();
+  // }
+
+  // @override
+  // void dispose() {
+  //   Provider.of<UserEqubServices>(context, listen: false);
+  //   // TODO: implement dispose
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     final prov = Provider.of<UserEqubServices>(context);
@@ -128,8 +143,11 @@ class _UDetailState extends State<UDetail> {
                                   ),
                                 ),
                                 onPressed: (() {
-                                  prov.payEqub(widget.equbModeL.id!, id,
-                                      context, );
+                                  prov.payEqub(
+                                    widget.equbModeL.id!,
+                                    id,
+                                    context,
+                                  );
                                 }),
                                 child: const Text(
                                   'Drop',

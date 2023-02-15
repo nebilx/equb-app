@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:equb_app/Authentication/Models/usermodel.dart';
+import 'package:equb_app/Authentication/Screens/signin.dart';
 import 'package:equb_app/Authentication/Shared/Shared.dart';
 import 'package:equb_app/Equb/Admin/Screens/ABottom.dart';
 import 'package:equb_app/Equb/Finance/Screens/FBottom.dart';
@@ -66,6 +67,8 @@ class Auth {
       var response = await dio.post(url, data: data);
       print(response.data);
       LoadingProgress.stop(context);
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SignIn()));
     } on DioError catch (e) {
       LoadingProgress.stop(context);
       DecoratedDialogs.showError(e.response!.data, context, 'okay');
