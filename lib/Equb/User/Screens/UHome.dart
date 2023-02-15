@@ -49,157 +49,193 @@ class _UHomeState extends State<UHome> {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              :   prov.isError? const Center(child: Text('Error occured'),):
-              
-              prov.equbs.isEmpty
+              : prov.isError
                   ? const Center(
-                      child: Text('no Equbs'),
+                      child: Text('Error occured'),
                     )
-                 :  ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      shrinkWrap: true,
-                      itemCount: prov.equbs.length,
-                      itemBuilder: ((context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 6, vertical: 8),
-                          child: Container(
-                            padding: const EdgeInsets.only(
-                                left: 7, top: 10, bottom: 10),
-                            decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 189, 189, 189),
-                                borderRadius: BorderRadius.circular(20)),
-                            height: MediaQuery.of(context).size.height * 0.18,
-                            width: MediaQuery.of(context).size.width,
-                            child: Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.asset(
-                                    'assets/images/equb_logo.png',
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.4,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.2,
-                                    //  fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const SizedBox(width: 5),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 2),
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.5,
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.2,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.white, width: 1),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      const Text(
-                                        'Equb',
-                                        style: TextStyle(fontSize: 15),
+                  : prov.equbs.isEmpty
+                      ? const Center(
+                          child: Text('no Equbs'),
+                        )
+                      : ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemCount: prov.equbs.length,
+                          itemBuilder: ((context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 6, vertical: 8),
+                              child: Container(
+                                padding: const EdgeInsets.only(
+                                    left: 7, top: 10, bottom: 10),
+                                decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        255, 189, 189, 189),
+                                    borderRadius: BorderRadius.circular(20)),
+                                height:
+                                    MediaQuery.of(context).size.height * 0.2,
+                                width: MediaQuery.of(context).size.width,
+                                child: Row(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.asset(
+                                        'assets/images/equb_logo.png',
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.4,
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.2,
+                                        //  fit: BoxFit.cover,
                                       ),
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.002),
-                                      Text(
-                                        prov.equbs[index].title,
-                                        style: const TextStyle(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.0295),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10, vertical: 3),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.47,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.2,
+                                      decoration: BoxDecoration(
+                                        border: Border.all(
+                                            color: Colors.white, width: 1),
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
-                                      SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.002),
-                                      Text(
-                                        'Amount :- ${prov.equbs[index].amount.toString()}',
-                                        style: const TextStyle(fontSize: 15),
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          minimumSize:
-                                              const Size(double.infinity, 40),
-                                          backgroundColor: Colors.black,
-                                          side: BorderSide.none,
-                                          shape: const RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(5)),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            'Equb',
+                                            style: TextStyle(fontSize: 15),
                                           ),
-                                        ),
-                                        onPressed: !prov.equbs[index].members!
-                                                .contains(id)
-                                            ? () {
-                                                EqubModeL equbModeL = EqubModeL(
-                                                    id: prov.equbs[index].id,
-                                                    title:
-                                                        prov.equbs[index].title,
-                                                    description: prov
-                                                        .equbs[index]
-                                                        .description,
-                                                    amount: prov
-                                                        .equbs[index].amount,
-                                                    members: prov
-                                                        .equbs[index].members,
-                                                    memberSize: prov
-                                                        .equbs[index]
-                                                        .memberSize);
-                                                prov.joinEqub(
-                                                    equbModeL, id, context);
-                                              }
-                                            : (() {
-                                                EqubModeL equbModeL = EqubModeL(
-                                                    id: prov.equbs[index].id,
-                                                    title:
-                                                        prov.equbs[index].title,
-                                                    description: prov
-                                                        .equbs[index]
-                                                        .description,
-                                                    amount: prov
-                                                        .equbs[index].amount,
-                                                    members: prov
-                                                        .equbs[index].members,
-                                                    memberSize: prov
-                                                        .equbs[index]
-                                                        .memberSize);
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          UDetail(
-                                                            equbModeL:
-                                                                equbModeL,
-                                                          )),
-                                                );
-                                              }),
-                                        child: Text(
-                                          !prov.equbs[index].members!
-                                                  .contains(id)
-                                              ? 'Join'
-                                              : 'Details',
-                                          style: TextStyle(
-                                            color: Colors.white,
+                                          SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.002),
+                                          Text(
+                                            prov.equbs[index].title,
+                                            style: const TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
                                           ),
-                                        ),
+                                          SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.002),
+                                          Text(
+                                            'Amount :- ${prov.equbs[index].amount.toString()}',
+                                            style:
+                                                const TextStyle(fontSize: 15),
+                                          ),
+                                          SizedBox(
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.002),
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              minimumSize: const Size(
+                                                  double.infinity, 40),
+                                              backgroundColor: Colors.black,
+                                              side: BorderSide.none,
+                                              shape:
+                                                  const RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(5)),
+                                              ),
+                                            ),
+                                            onPressed: !prov
+                                                    .equbs[index].members!
+                                                    .contains(id)
+                                                ? () {
+                                                    EqubModeL equbModeL =
+                                                        EqubModeL(
+                                                            id: prov
+                                                                .equbs[index]
+                                                                .id,
+                                                            title: prov
+                                                                .equbs[index]
+                                                                .title,
+                                                            description: prov
+                                                                .equbs[index]
+                                                                .description,
+                                                            amount: prov
+                                                                .equbs[index]
+                                                                .amount,
+                                                            members:
+                                                                prov
+                                                                    .equbs[
+                                                                        index]
+                                                                    .members,
+                                                            memberSize: prov
+                                                                .equbs[index]
+                                                                .memberSize);
+                                                    prov.joinEqub(
+                                                        equbModeL, id, context);
+                                                  }
+                                                : (() {
+                                                    EqubModeL equbModeL =
+                                                        EqubModeL(
+                                                            id: prov
+                                                                .equbs[index]
+                                                                .id,
+                                                            title: prov
+                                                                .equbs[index]
+                                                                .title,
+                                                            description: prov
+                                                                .equbs[index]
+                                                                .description,
+                                                            amount: prov
+                                                                .equbs[index]
+                                                                .amount,
+                                                            members:
+                                                                prov
+                                                                    .equbs[
+                                                                        index]
+                                                                    .members,
+                                                            memberSize: prov
+                                                                .equbs[index]
+                                                                .memberSize);
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              UDetail(
+                                                                equbModeL:
+                                                                    equbModeL,
+                                                              )),
+                                                    );
+                                                  }),
+                                            child: Text(
+                                              !prov.equbs[index].members!
+                                                      .contains(id)
+                                                  ? 'Join'
+                                                  : 'Details',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }),
-                    ),
+                              ),
+                            );
+                          }),
+                        ),
         ),
       ),
     );
