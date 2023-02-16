@@ -102,7 +102,7 @@ class _UDetailState extends State<UDetail> {
                               const Padding(
                                 padding: EdgeInsets.only(left: 50),
                                 child: Text(
-                                  'Catagory',
+                                  'Equb',
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
@@ -117,8 +117,8 @@ class _UDetailState extends State<UDetail> {
                               SizedBox(
                                   height: MediaQuery.of(context).size.width *
                                       0.005),
-                              const Text(
-                                'Name',
+                              Text(
+                                '${widget.equbModeL.title}',
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.bold,
@@ -127,8 +127,8 @@ class _UDetailState extends State<UDetail> {
                               SizedBox(
                                   height: MediaQuery.of(context).size.width *
                                       0.005),
-                              const Text(
-                                'Amount :- 2500 Birr',
+                              Text(
+                                'Amount :- ${widget.equbModeL.amount} Birr',
                                 style: TextStyle(
                                     fontSize: 15, color: Colors.white),
                               ),
@@ -150,7 +150,7 @@ class _UDetailState extends State<UDetail> {
                                   );
                                 }),
                                 child: const Text(
-                                  'Drop',
+                                  'Pay',
                                   style: TextStyle(
                                     color: Colors.black,
                                   ),
@@ -163,44 +163,26 @@ class _UDetailState extends State<UDetail> {
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.3,
-                    width: MediaQuery.of(context).size.width,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(left: 30),
-                          child: Text(
-                            'Members',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 30),
+                        child: Text(
+                          'Members',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                        widget.equbModeL.members!.isEmpty
-                            ? const Center(
-                                child: Text('No members'),
-                              )
-                            : Text(
-                                "Number of members : ${widget.equbModeL.members!.length} ")
-                        // : ListView.builder(
-                        //     shrinkWrap: true,
-                        //     itemCount: widget.equbModeL.members!.length,
-                        //     itemBuilder: (context, index) {
-                        //       return ListTile(
-                        //         title: Text(widget.equbModeL.members![index]
-                        //             ['fullname']),
-                        //         leading: Image.network(widget
-                        //             .equbModeL.members![index]['image']),
-                        //         subtitle: Text(widget
-                        //             .equbModeL.members![index]['phone']),
-                        //       );
-                        //     },
-                        //   )
-                      ],
-                    ),
+                      ),
+                      widget.equbModeL.members!.isEmpty
+                          ? const Center(
+                              child: Text('No members'),
+                            )
+                          : Text(
+                              'member size: ${widget.equbModeL.members!.length}')
+                    ],
                   )
                 ],
               ),

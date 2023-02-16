@@ -142,10 +142,10 @@ class _SignUpState extends State<SignUp> {
                     return;
                   } else {
                     User user = User(
-                        username: _userController.text,
+                        username: _userController.text.trim(),
                         phonenumber: _phoneController.text,
-                        fullname: _nameController.text,
-                        password: _passwordController.text);
+                        fullname: _nameController.text.trim(),
+                        password: _passwordController.text.trim());
                     Auth mAuth = Auth();
                     mAuth.signup(user, context);
                   }
