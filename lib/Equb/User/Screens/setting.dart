@@ -8,128 +8,133 @@ class Setting extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.black,
-        title: const Center(
-          child: Text(
-            'Setting',
-            style: TextStyle(
-              fontSize: 15,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: Colors.black,
+          title: const Center(
+            child: Text(
+              'Setting',
+              style: TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.symmetric(vertical: 40),
-          child: Column(
-            children: [
-              Stack(
-                children: [
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    height: MediaQuery.of(context).size.height * 0.17,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage(
-                          image,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: GestureDetector(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.06,
-                        height: MediaQuery.of(context).size.height * 0.03,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+        body: SingleChildScrollView(
+          child: Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            child: Column(
+              children: [
+                Stack(
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.height * 0.17,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                            image,
                           ),
-                          color: Colors.black,
-                        ),
-                        child: const Icon(
-                          Icons.pin_end,
-                          color: Colors.white,
                         ),
                       ),
                     ),
-                  )
-                ],
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-              Text(
-                fullname,
-                style:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-              ),
-              Text(
-                'Phone:- $phone',
-                style: const TextStyle(fontSize: 13),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width * 0.5,
-              //   child: ElevatedButton(
-              //     style: ElevatedButton.styleFrom(
-              //       backgroundColor: Colors.black,
-              //       side: BorderSide.none,
-              //       shape: const StadiumBorder(),
-              //     ),
-              //     onPressed: (() {
-              //       Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //               builder: (context) => UpdateProfile()));
-              //     }),
-              //     child: Text(
-              //       'Edit Profile',
-              //       style: TextStyle(
-              //         color: Colors.white,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-              const Divider(thickness: 4),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-              ProfileMenuWidget(
-                title: 'Contact Us',
-                icon: Icons.contacts,
-                onPress: () {},
-              ),
-              ProfileMenuWidget(
-                title: 'Term Policy',
-                icon: Icons.policy,
-                onPress: () {},
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-              const Divider(thickness: 4),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-              ProfileMenuWidget(
-                title: 'About',
-                icon: Icons.info,
-                onPress: () {},
-              ),
-              ProfileMenuWidget(
-                title: 'Logout',
-                icon: Icons.logout_outlined,
-                textColor: Colors.red,
-                endIcon: false,
-                onPress: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const SignIn()));
-                },
-              ),
-            ],
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: GestureDetector(
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.06,
+                          height: MediaQuery.of(context).size.height * 0.03,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            color: Colors.black,
+                          ),
+                          child: const Icon(
+                            Icons.pin_end,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                Text(
+                  fullname,
+                  style: const TextStyle(
+                      fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'Phone:- $phone',
+                  style: const TextStyle(fontSize: 13),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                // SizedBox(
+                //   width: MediaQuery.of(context).size.width * 0.5,
+                //   child: ElevatedButton(
+                //     style: ElevatedButton.styleFrom(
+                //       backgroundColor: Colors.black,
+                //       side: BorderSide.none,
+                //       shape: const StadiumBorder(),
+                //     ),
+                //     onPressed: (() {
+                //       Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (context) => UpdateProfile()));
+                //     }),
+                //     child: Text(
+                //       'Edit Profile',
+                //       style: TextStyle(
+                //         color: Colors.white,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                const Divider(thickness: 4),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                ProfileMenuWidget(
+                  title: 'Contact Us',
+                  icon: Icons.contacts,
+                  onPress: () {},
+                ),
+                ProfileMenuWidget(
+                  title: 'Term Policy',
+                  icon: Icons.policy,
+                  onPress: () {},
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                const Divider(thickness: 4),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                ProfileMenuWidget(
+                  title: 'About',
+                  icon: Icons.info,
+                  onPress: () {},
+                ),
+                ProfileMenuWidget(
+                  title: 'Logout',
+                  icon: Icons.logout_outlined,
+                  textColor: Colors.red,
+                  endIcon: false,
+                  onPress: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignIn()));
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
